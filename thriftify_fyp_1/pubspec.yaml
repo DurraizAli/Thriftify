@@ -20,6 +20,7 @@ dependencies:
 
   iconsax: ^0.0.8
   cupertino_icons: ^1.0.6
+  flutter_native_splash: ^2.4.0
 
   #state management
   get: ^4.6.5
