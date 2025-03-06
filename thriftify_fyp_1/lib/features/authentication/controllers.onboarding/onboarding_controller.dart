@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:thriftify_fyp_1/features/authentication/screens/login/login.dart';
 
 class OnBoardingController extends GetxController {
   static OnBoardingController get instance =>
@@ -25,7 +26,7 @@ class OnBoardingController extends GetxController {
     if (currentPageIndex.value == 2) {
       //if the current page index is 2 then we will navigate to the next page
       //navigate to the next page
-      //Get.to(LoginScreen());
+      Get.offAll(const LoginScreen());
     } else {
       double page = currentPageIndex.value + 1;
       pageController.jumpTo(page);
