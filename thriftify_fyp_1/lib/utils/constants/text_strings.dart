@@ -31,6 +31,7 @@ class TTexts {
   static const String companyName = "Company Name";
   static const String jobTitle = "Job Title";
   static const String website = "Website";
+  static const String orSignUpWith = "Or Sign Up With";
 
   static const String loginButton = "Log In";
   static const String forgotPassword = "Forgot Password?";
@@ -69,4 +70,14 @@ class TTexts {
   static const String accountNotFound = "Account not found";
   static const String wrongPassword = "Incorrect password";
   static const String fieldRequired = "This field is required";
+  static const String confirmEmail = "Confirm Email";
+  static const String confirmEmailSubTitle =
+      "Please confirm your email address to continue";
+  static const iAgreeTo = "I agree to the";
+  static const resendEmail = "Resend Email";
+  static const tContinue = "Continue";
+  static const termsOfUsage = "\nTerms of Usage";
+  static const yourAccountCreated = "Your account has been created";
+  static const yourAccountCreatedSubTitle =
+      "Your account has been successfully created. Please verify your email address to continue";
 }

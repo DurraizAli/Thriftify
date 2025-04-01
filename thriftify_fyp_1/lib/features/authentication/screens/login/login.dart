@@ -2,9 +2,11 @@ import "package:flutter/cupertino.dart";
 import "package:flutter/material.dart";
 import "package:flutter/rendering.dart";
 import "package:flutter/widgets.dart";
+import "package:get/get.dart";
 import "package:get/get_utils/get_utils.dart";
 import "package:iconsax/iconsax.dart";
 import "package:thriftify_fyp_1/common/styles/spacing_styles.dart";
+import "package:thriftify_fyp_1/features/authentication/screens/signup/signup.dart";
 import "package:thriftify_fyp_1/utils/constants/colors.dart";
 import "package:thriftify_fyp_1/utils/constants/image_strings.dart";
 import "package:thriftify_fyp_1/utils/constants/sizes.dart";
@@ -185,7 +187,7 @@ class TLoginForm extends StatelessWidget {
           SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                  onPressed: () {}, child: const Text(TTexts.createAccount))),
+                  onPressed: () => Get.to(()=> const SignupScreen()), child: const Text(TTexts.createAccount))),
         ],
       ),
     ));
@@ -203,7 +205,7 @@ class TLoginHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Image(
           height: 150,
