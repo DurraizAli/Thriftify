@@ -6,7 +6,9 @@ import "package:get/get.dart";
 import "package:get/get_utils/get_utils.dart";
 import "package:iconsax/iconsax.dart";
 import "package:thriftify_fyp_1/common/styles/spacing_styles.dart";
+import "package:thriftify_fyp_1/features/authentication/screens/password_configuration/forget_password.dart";
 import "package:thriftify_fyp_1/features/authentication/screens/signup/signup.dart";
+import "package:thriftify_fyp_1/navigation_menu.dart";
 import "package:thriftify_fyp_1/utils/constants/colors.dart";
 import "package:thriftify_fyp_1/utils/constants/image_strings.dart";
 import "package:thriftify_fyp_1/utils/constants/sizes.dart";
@@ -169,7 +171,7 @@ class TLoginForm extends StatelessWidget {
               ),
               //forget password
               TextButton(
-                  onPressed: () {}, child: const Text(TTexts.forgotPassword))
+                  onPressed: () => Get.to(const ForgetPassword()), child: const Text(TTexts.forgotPassword))
             ],
           ),
           const SizedBox(
@@ -179,7 +181,7 @@ class TLoginForm extends StatelessWidget {
           SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                  onPressed: () {}, child: const Text(TTexts.loginButton))),
+                  onPressed: () => Get.to(()=> NavigationMenu()), child: const Text(TTexts.loginButton))),
           const SizedBox(
             height: TSizes.spaceBtwItems,
           ),

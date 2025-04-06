@@ -35,6 +35,7 @@ class TTexts {
 
   static const String loginButton = "Log In";
   static const String forgotPassword = "Forgot Password?";
+  static const String forgotPasswordSubtitle = "Type In your Email to get Code";
   static const String rememberMe = "Remember Me";
   static const String orsignInWith = "Or Sign In With";
 
@@ -80,4 +81,8 @@ class TTexts {
   static const yourAccountCreated = "Your account has been created";
   static const yourAccountCreatedSubTitle =
       "Your account has been successfully created. Please verify your email address to continue";
+
+  static String changeYourPasswordTitle = "Password Reset Email Sent";
+  static String changeYourPasswordSubTitle1 = "Your Account Security is our We have sent you a secure link to safely change your password and keep your account protected";
+  static String done= "Done";
 }
