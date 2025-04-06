@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:thriftify_fyp_1/features/shop/screens/home.dart';
 import 'package:thriftify_fyp_1/utils/helpers/helper_functions.dart';
 
 class NavigationMenu extends StatelessWidget {
@@ -54,9 +55,7 @@ class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs; //obs variable is observed by widgets
 
   final screens = [
-    Container(
-      color: Colors.purple,
-    ),
+    HomeScreen(),
     Container(
       color: Colors.green,
     ),
