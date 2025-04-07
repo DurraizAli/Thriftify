@@ -12,7 +12,7 @@ class TPrimaryHeaderContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return TCurvedEdgeWidget(
       child: Container(
-        color: const Color.fromARGB(255, 236, 125, 255),
+        color: Color.fromARGB(255, 11, 161, 101),
         padding: const EdgeInsets.all(0),
         //stack is used to display widgets on top of each other
         child: SizedBox(
