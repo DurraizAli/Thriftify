@@ -31,8 +31,8 @@ class NavigationMenu extends StatelessWidget {
               label: 'Home',
             ),
             NavigationDestination(
-              icon: Icon(Icons.favorite),
-              label: 'Favourites',
+              icon: Icon(Icons.add),
+              label: 'Add',
             ),
             NavigationDestination(
               icon: Icon(Icons.chat),
