@@ -32,7 +32,7 @@ class NavigationMenu extends StatelessWidget {
             ),
             NavigationDestination(
               icon: Icon(Icons.add),
-              label: 'Add',
+              label: 'Focus',
             ),
             NavigationDestination(
               icon: Icon(Icons.chat),
