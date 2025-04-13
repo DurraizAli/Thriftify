@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -9,10 +10,12 @@ import 'package:thriftify_fyp_1/common/widgets/custom_shapes/containers/primary_
 import 'package:thriftify_fyp_1/common/widgets/custom_shapes/containers/search_container.dart';
 import 'package:thriftify_fyp_1/common/widgets/custom_shapes/curved_edges/curved_edges.dart';
 import 'package:thriftify_fyp_1/common/widgets/custom_shapes/curved_edges/curved_edges_widgets.dart';
+import 'package:thriftify_fyp_1/common/widgets/images/t_rounded_image.dart';
 import 'package:thriftify_fyp_1/common/widgets/texts/section_haeding.dart';
-import 'package:thriftify_fyp_1/features/shop/screens/widgets/home_appbar.dart';
-import 'package:thriftify_fyp_1/features/shop/screens/widgets/home_categories.dart';
-import 'package:thriftify_fyp_1/features/shop/screens/widgets/image_text_widgets/vertiacl_image_text.dart';
+import 'package:thriftify_fyp_1/features/shop/screens/home/widgets/home_appbar.dart';
+import 'package:thriftify_fyp_1/features/shop/screens/home/widgets/home_categories.dart';
+import 'package:thriftify_fyp_1/features/shop/screens/home/widgets/image_text_widgets/vertiacl_image_text.dart';
+import 'package:thriftify_fyp_1/features/shop/screens/home/widgets/promo_slider.dart';
 import 'package:thriftify_fyp_1/utils/constants/colors.dart';
 import 'package:thriftify_fyp_1/utils/constants/image_strings.dart';
 import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
@@ -25,23 +28,23 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return   const Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            TPrimaryHeaderContainer(
+            const TPrimaryHeaderContainer(
               child: Column(
                 children: [
-                  const THomeAppBar(),
-                   const SizedBox(height: TSizes.spaceBtwSections),
+                  THomeAppBar(),
+                   SizedBox(height: TSizes.spaceBtwSections),
 
 
-                  const TSearchContainer(text: 'Search in Store',),
-                  const SizedBox(height: TSizes.spaceBtwSections),
+                   TSearchContainer(text: 'Search in Store',),
+                  SizedBox(height: TSizes.spaceBtwSections),
 
                   Padding(padding: EdgeInsets.only(left: TSizes.defaultSpace), child: Column(children: [
                     TsectionHeading(title: 'Popular Categories', showActionButton: false, textColor: Colors.white,),
-                    const SizedBox(height: TSizes.spaceBtwItems),
+                     SizedBox(height: TSizes.spaceBtwItems),
 
                     THomeCategories()
 
@@ -55,12 +58,28 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
+             Padding(
+               padding:   EdgeInsets.all(TSizes.defaultSpace),
+               child: TPromoSlider(banners: [TImages.promoBanner1,TImages.promoBanner2,TImages.promoBanner3,],),
+               
+             )
+
+
+
+
+
+
+
+
           ],
         ),
       ),
     );
   }
 }
+
+
+
 
 
 
