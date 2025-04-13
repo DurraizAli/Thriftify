@@ -11,7 +11,7 @@ class TImages {
   static const String onboarding2 = 'assets/images/on_boarding_images/2.png';
   static const String onboarding3 = 'assets/images/on_boarding_images/3.png';
 
-  static const String promoBanner1 = 'assets/images/banners/nike1.png';
-  static const String promoBanner2 = 'assets/images/banners/nike2.png';
+  static const String promoBanner1 = 'assets/images/banners/nike2.png';
+  static const String promoBanner2 = 'assets/images/banners/nike1.png';
   static const String promoBanner3 = 'assets/images/banners/nike3.png';
 }

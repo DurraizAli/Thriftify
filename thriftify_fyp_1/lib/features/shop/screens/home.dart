@@ -5,7 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:thriftify_fyp_1/common/widgets/appbar/appbar.dart';
 import 'package:thriftify_fyp_1/common/widgets/chatbot/AI_bot.dart';
-import 'package:thriftify_fyp_1/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:thriftify_fyp_1/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:thriftify_fyp_1/common/widgets/custom_shapes/containers/search_container.dart';
 import 'package:thriftify_fyp_1/common/widgets/custom_shapes/curved_edges/curved_edges.dart';
