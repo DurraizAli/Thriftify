@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:thriftify_fyp_1/utils/constants/image_strings.dart';
 
-import '../../../features/shop/models/brand_model.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/enums.dart';
 import '../../../utils/constants/sizes.dart';
@@ -54,7 +53,7 @@ class TBrandCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TBrandTitleWithVerifiedIcon(title: 'Nike', brandTextSize: TextSizes.large),
+                  const TBrandTitleWithVerifiedIcon(title: 'Nike', brandTextSize: TextSizes.large),
                   Text(
                     '25 Products',
                     overflow: TextOverflow.ellipsis,

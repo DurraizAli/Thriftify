@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:thriftify_fyp_1/utils/constants/colors.dart';
 
 class TAiMessageIcon extends StatelessWidget {

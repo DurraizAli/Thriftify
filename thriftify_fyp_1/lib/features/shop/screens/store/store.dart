@@ -2,17 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:thriftify_fyp_1/common/widgets/appbar/appbar.dart';
 import 'package:thriftify_fyp_1/common/widgets/appbar/tabbar.dart';
 import 'package:thriftify_fyp_1/common/widgets/brands/brand_card.dart';
-import 'package:thriftify_fyp_1/common/widgets/brands/brand_show_case.dart';
-import 'package:thriftify_fyp_1/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:thriftify_fyp_1/common/widgets/custom_shapes/containers/search_container.dart';
-import 'package:thriftify_fyp_1/common/widgets/images/t_circular_image.dart';
 import 'package:thriftify_fyp_1/common/widgets/layouts/grid_layout.dart';
 import 'package:thriftify_fyp_1/common/widgets/texts/section_heading.dart';
-import 'package:thriftify_fyp_1/common/widgets/texts/t_brand_title_text_with_verified_icon.dart';
 import 'package:thriftify_fyp_1/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:thriftify_fyp_1/utils/constants/colors.dart';
-import 'package:thriftify_fyp_1/utils/constants/enums.dart';
-import 'package:thriftify_fyp_1/utils/constants/image_strings.dart';
 import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
 import 'package:thriftify_fyp_1/utils/helpers/helper_functions.dart';
 
@@ -24,7 +18,7 @@ class StoreScreen extends StatelessWidget {
     return DefaultTabController(
       length: 5,
       child: Scaffold(
-        appBar: TAppBar(
+        appBar: const TAppBar(
           title: Text('Store'),
       
          

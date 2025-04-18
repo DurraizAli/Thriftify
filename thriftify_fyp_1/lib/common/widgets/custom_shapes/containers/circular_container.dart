@@ -25,7 +25,7 @@ class TCircularContainer extends StatelessWidget {
     return Container(
       width: 165,
       height: 165,
-      padding: EdgeInsets.all(0),
+      padding: const EdgeInsets.all(0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(165),
         color: TColors.textWhite.withOpacity(0.1),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:thriftify_fyp_1/common/widgets/brands/brand_card.dart';
 import 'package:thriftify_fyp_1/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:thriftify_fyp_1/utils/constants/colors.dart';
-import 'package:thriftify_fyp_1/utils/constants/image_strings.dart';
 import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
 import 'package:thriftify_fyp_1/utils/helpers/helper_functions.dart';
 

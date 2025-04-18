@@ -2,12 +2,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:thriftify_fyp_1/common/widgets/custom_shapes/containers/circular_container.dart';
 import 'package:thriftify_fyp_1/common/widgets/images/t_rounded_image.dart';
 import 'package:thriftify_fyp_1/features/shop/controllers/home_controller.dart';
 import 'package:thriftify_fyp_1/utils/constants/colors.dart';
-import 'package:thriftify_fyp_1/utils/constants/image_strings.dart';
 import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
 
 class TPromoSlider extends StatelessWidget {
