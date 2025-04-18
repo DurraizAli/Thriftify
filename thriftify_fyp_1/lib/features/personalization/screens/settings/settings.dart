@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:thriftify_fyp_1/common/widgets/appbar/appbar.dart';
 import 'package:thriftify_fyp_1/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:thriftify_fyp_1/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:thriftify_fyp_1/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:thriftify_fyp_1/common/widgets/texts/section_heading.dart';
+import 'package:thriftify_fyp_1/features/personalization/screens/profile/profile.dart';
 import 'package:thriftify_fyp_1/utils/constants/colors.dart';
 import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
 
@@ -20,7 +23,7 @@ class SettingsScreen extends StatelessWidget {
             TPrimaryHeaderContainer(child: Column(
               children: [
                 TAppBar(title: Text('Account', style: Theme.of(context).textTheme.headlineMedium!.apply(color:  TColors.white),),),
-                const TUserProfileTile(),
+                TUserProfileTile(onPressed: () => Get.to(() => const ProfileScreen()),),
                 const SizedBox(height: TSizes.spaceBtwSections,)
 
 
