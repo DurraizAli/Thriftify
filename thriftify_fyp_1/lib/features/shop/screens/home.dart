@@ -10,6 +10,7 @@ import 'package:thriftify_fyp_1/common/widgets/custom_shapes/containers/search_c
 import 'package:thriftify_fyp_1/common/widgets/custom_shapes/curved_edges/curved_edges.dart';
 import 'package:thriftify_fyp_1/common/widgets/custom_shapes/curved_edges/curved_edges_widgets.dart';
 import 'package:thriftify_fyp_1/common/widgets/images/t_rounded_image.dart';
+import 'package:thriftify_fyp_1/common/widgets/layouts/grid_layout.dart';
 import 'package:thriftify_fyp_1/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:thriftify_fyp_1/common/widgets/texts/section_haeding.dart';
 import 'package:thriftify_fyp_1/features/shop/screens/home/widgets/home_appbar.dart';
@@ -28,7 +29,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   const Scaffold(
+    return   Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -59,11 +60,16 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
              Padding(
-               padding:   EdgeInsets.all(TSizes.defaultSpace),
-               child:Column(children: [TPromoSlider(banners: [TImages.promoBanner1,TImages.promoBanner2,TImages.promoBanner3,],),
-               SizedBox(height: TSizes.spaceBtwSections,),
+               padding:   const EdgeInsets.all(TSizes.defaultSpace),
+               child:Column(children: [const TPromoSlider(banners: [TImages.promoBanner1,TImages.promoBanner2,TImages.promoBanner3,],),
+               const SizedBox(height: TSizes.spaceBtwSections,),
 
-               TProductCardVertical(),
+                TsectionHeading(title: 'Popular Products', onPressed: (){},),
+               const SizedBox(height: TSizes.spaceBtwItems),
+
+              TGridLayout(itemCount: 4, itemBuilder: (_, index) => const TProductCardVertical() ,)
+
+             
 
                ],) ,
                
@@ -82,6 +88,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
 
 
 
