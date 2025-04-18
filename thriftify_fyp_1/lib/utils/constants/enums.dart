@@ -1,2 +1,15 @@
-enum TextSizes{small, medium, large}
-//enums cannot be made in a class that is why we are making it in here
+enum TextSizes { small, medium, large }
+
+enum OrderStatus { processing, shipped, delivered }
+
+enum PaymentMethods {
+  paypal,
+  googlePay,
+  applePay,
+  visa,
+  masterCard,
+  creditCard,
+  paystack,
+  razorPay,
+  paytm
+}

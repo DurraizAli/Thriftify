@@ -12,7 +12,7 @@ import 'package:thriftify_fyp_1/common/widgets/custom_shapes/curved_edges/curved
 import 'package:thriftify_fyp_1/common/widgets/images/t_rounded_image.dart';
 import 'package:thriftify_fyp_1/common/widgets/layouts/grid_layout.dart';
 import 'package:thriftify_fyp_1/common/widgets/products/product_cards/product_card_vertical.dart';
-import 'package:thriftify_fyp_1/common/widgets/texts/section_haeding.dart';
+import 'package:thriftify_fyp_1/common/widgets/texts/section_heading.dart';
 import 'package:thriftify_fyp_1/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:thriftify_fyp_1/features/shop/screens/home/widgets/home_categories.dart';
 import 'package:thriftify_fyp_1/features/shop/screens/home/widgets/image_text_widgets/vertiacl_image_text.dart';
@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(height: TSizes.spaceBtwSections),
 
                   Padding(padding: EdgeInsets.only(left: TSizes.defaultSpace), child: Column(children: [
-                    TsectionHeading(title: 'Popular Categories', showActionButton: false, textColor: Colors.white,),
+                    TSectionHeading(title: 'Popular Categories', showActionButton: false, textColor: Colors.white,),
                      SizedBox(height: TSizes.spaceBtwItems),
 
                     THomeCategories()
@@ -64,7 +64,7 @@ class HomeScreen extends StatelessWidget {
                child:Column(children: [const TPromoSlider(banners: [TImages.promoBanner1,TImages.promoBanner2,TImages.promoBanner3,],),
                const SizedBox(height: TSizes.spaceBtwSections,),
 
-                TsectionHeading(title: 'Popular Products', onPressed: (){},),
+                TSectionHeading(title: 'Popular Products', onPressed: (){},),
                const SizedBox(height: TSizes.spaceBtwItems),
 
               TGridLayout(itemCount: 4, itemBuilder: (_, index) => const TProductCardVertical() ,)

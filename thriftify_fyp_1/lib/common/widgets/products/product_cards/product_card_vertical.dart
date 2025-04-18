@@ -7,6 +7,7 @@ import 'package:thriftify_fyp_1/common/widgets/icons/t_circular_icon.dart';
 import 'package:thriftify_fyp_1/common/widgets/images/t_rounded_image.dart';
 import 'package:thriftify_fyp_1/common/widgets/texts/product_price_text.dart';
 import 'package:thriftify_fyp_1/common/widgets/texts/product_title_text.dart';
+import 'package:thriftify_fyp_1/common/widgets/texts/t_brand_title_text_with_verified_icon.dart';
 import 'package:thriftify_fyp_1/utils/constants/colors.dart';
 import 'package:thriftify_fyp_1/utils/constants/image_strings.dart';
 import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
@@ -61,27 +62,33 @@ class TProductCardVertical extends StatelessWidget {
             ),
              const SizedBox(height: TSizes.spaceBtwItems/2,),
           
-           Padding(
-            padding: const EdgeInsets.only(left: TSizes.sm),
+           const Padding(
+            padding: EdgeInsets.only(left: TSizes.sm),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const TProductTitleText(title: 'Black Nike Shoes', smallSize: true,),
-              const SizedBox(height: TSizes.spaceBtwItems / 2,),
-              Row(
-                children: [
-                  Text('Nike', overflow: TextOverflow.ellipsis, maxLines: 1, style: Theme.of(context).textTheme.labelMedium,),
-                  const SizedBox(width: TSizes.xs,),
-                  const Icon(Iconsax.verify5, color: TColors.primary, size: TSizes.iconXs,),
-                ],
-              ),
-
+              TProductTitleText(title: 'Black Nike Shoes', smallSize: true,),
+              SizedBox(height: TSizes.spaceBtwItems / 2,),
+              TBrandTitleWithVerifiedIcon(title: 'Nike',),
 
               
+      
+      
+            
+            ],
+          ),
+          ),
+          const Spacer(),
+
+
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const TProductPriceText(price: '35.0'),
+                  const Padding(
+                    padding:  EdgeInsets.only(left: TSizes.sm),
+                    child:  TProductPriceText(price: '35.0'),
+                  ),
                   
                   Container(
                     decoration: const BoxDecoration(
@@ -100,11 +107,6 @@ class TProductCardVertical extends StatelessWidget {
                 ],
               )
       
-      
-      
-            
-            ],
-          ),)
           
           ],
         ),
@@ -113,4 +115,6 @@ class TProductCardVertical extends StatelessWidget {
     );
   }
 }
+
+
 

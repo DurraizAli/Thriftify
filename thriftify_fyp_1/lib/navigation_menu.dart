@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:thriftify_fyp_1/features/shop/screens/home.dart';
+import 'package:thriftify_fyp_1/features/shop/screens/store/store.dart';
 import 'package:thriftify_fyp_1/utils/helpers/helper_functions.dart';
 
 class NavigationMenu extends StatelessWidget {
@@ -31,8 +32,8 @@ class NavigationMenu extends StatelessWidget {
               label: 'Home',
             ),
             NavigationDestination(
-              icon: Icon(Icons.add),
-              label: 'keyboard',
+              icon: Icon(Icons.store),
+              label: 'Store',
             ),
             NavigationDestination(
               icon: Icon(Icons.chat),
@@ -55,7 +56,8 @@ class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs; //obs variable is observed by widgets
 
   final screens = [
-    HomeScreen(),
+    const HomeScreen(),
+    const StoreScreen(),
     Container(
       color: Colors.green,
     ),
