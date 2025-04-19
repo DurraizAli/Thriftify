@@ -41,6 +41,7 @@ class TAppTheme {
       chipTheme: TChipTheme.darkChipTheme,
       appBarTheme: TAppBarTheme.darkAppBarTheme,
       elevatedButtonTheme: TElevatedButtonTheme.darkElevatedButtonTheme,
+      // checkboxTheme: TCheckboxTheme.lightCheckboxTheme,
       checkboxTheme: TCheckboxTheme.darkCheckboxTheme,
       bottomSheetTheme: TBottomSheetTheme.darkBottomSheetTheme,
       outlinedButtonTheme: TOutlinedButtonTheme.darkOutlinedButtonTheme,
