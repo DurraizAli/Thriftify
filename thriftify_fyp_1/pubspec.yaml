@@ -20,13 +20,18 @@ dependencies:
 
   iconsax: ^0.0.8
   cupertino_icons: ^1.0.6
-  carousel_slider: ^5.0.0
+  
   flutter_native_splash: ^2.4.0
   smooth_page_indicator: ^1.1.0
 
   #state management
   get: ^4.6.5
   get_storage: ^2.1.1
+
+  #product specific
+  readmore: ^2.2.0
+  carousel_slider: ^5.0.0
+
 
 dev_dependencies:
   flutter_test:
