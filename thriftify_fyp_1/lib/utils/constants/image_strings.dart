@@ -15,7 +15,7 @@ class TImages {
   static const String promoBanner2 = 'assets/images/banners/nike1.png';
   static const String promoBanner3 = 'assets/images/banners/nike3.png';
 
-  static const String productImage1 = "assets/images/products/nike1.png";
+  static const String productImage1 = "assets/images/banners/nike2.png";
 
 
 }
