@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:thriftify_fyp_1/common/styles/shadows.dart';
 import 'package:thriftify_fyp_1/common/widgets/custom_shapes/containers/rounded_container.dart';
@@ -18,6 +17,7 @@ class TProductCardVertical extends StatelessWidget {
   const TProductCardVertical({super.key});
 
 
+  @override
   Widget build(BuildContext context) {
     final dark = THelperFunctions.isDarkMode(context);
 

@@ -12,28 +12,25 @@ class TPrimaryHeaderContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return TCurvedEdgeWidget(
       child: Container(
-        color: Color.fromARGB(255, 11, 161, 101),
-        padding: const EdgeInsets.all(0),
+        color: TColors.primary,
+        
         //stack is used to display widgets on top of each other
-        child: SizedBox(
-          height: 400,
-          child: Stack(
-            children: [
-              Positioned(
-                  top: -150,
-                  right: -250,
-                  child: TCircularContainer(
-                    backgroundColor: TColors.textWhite.withOpacity(0.1),
-                  )),
-              Positioned(
-                  top: 0,
-                  right: -250,
-                  child: TCircularContainer(
-                    backgroundColor: TColors.textWhite.withOpacity(0.1),
-                  )),
-                  child,
-            ],
-          ),
+        child: Stack(
+          children: [
+            Positioned(
+                top: -150,
+                right: -250,
+                child: TCircularContainer(
+                  backgroundColor: TColors.textWhite.withOpacity(0.1),
+                )),
+            Positioned(
+                top: 0,
+                right: -250,
+                child: TCircularContainer(
+                  backgroundColor: TColors.textWhite.withOpacity(0.1),
+                )),
+                child,
+          ],
         ),
       ),
     );

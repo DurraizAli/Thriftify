@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:thriftify_fyp_1/common/widgets/appbar/appbar.dart';
 import 'package:thriftify_fyp_1/common/widgets/success_screen/success_screen.dart';
 import 'package:thriftify_fyp_1/features/authentication/screens/login/login.dart';
-import 'package:thriftify_fyp_1/features/authentication/screens/signup/widgets/signup_form.dart';
 import 'package:thriftify_fyp_1/utils/constants/image_strings.dart';
 import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
 import 'package:thriftify_fyp_1/utils/constants/text_strings.dart';

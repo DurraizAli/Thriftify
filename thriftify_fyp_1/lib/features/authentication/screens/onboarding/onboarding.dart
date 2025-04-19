@@ -1,18 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:thriftify_fyp_1/features/authentication/controllers.onboarding/onboarding_controller.dart';
 import 'package:thriftify_fyp_1/features/authentication/screens/onboarding/widgets/onboarding_dot_navigation.dart';
 import 'package:thriftify_fyp_1/features/authentication/screens/onboarding/widgets/onboarding_next_button.dart';
 import 'package:thriftify_fyp_1/features/authentication/screens/onboarding/widgets/onboarding_page.dart';
 import 'package:thriftify_fyp_1/features/authentication/screens/onboarding/widgets/onboarding_skip.dart';
-import 'package:thriftify_fyp_1/utils/constants/colors.dart';
 import 'package:thriftify_fyp_1/utils/constants/image_strings.dart';
-import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
 import 'package:thriftify_fyp_1/utils/constants/text_strings.dart';
-import 'package:thriftify_fyp_1/utils/device/device_utility.dart';
-import 'package:thriftify_fyp_1/utils/helpers/helper_functions.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});

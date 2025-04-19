@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:thriftify_fyp_1/features/personalization/screens/settings/settings.dart';
 import 'package:thriftify_fyp_1/features/shop/screens/home.dart';
 import 'package:thriftify_fyp_1/features/shop/screens/store/store.dart';
 import 'package:thriftify_fyp_1/utils/helpers/helper_functions.dart';
@@ -61,7 +62,7 @@ class NavigationController extends GetxController {
     Container(
       color: Colors.green,
     ),
-    Container(color: Colors.blue),
+    const SettingsScreen(),
     Container(color: Colors.yellow)
   ]; //list of screens to be displayed
 }
