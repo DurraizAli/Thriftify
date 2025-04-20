@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:thriftify_fyp_1/app.dart';
-import 'package:thriftify_fyp_1/data/repositories.authentication/authentication_repositories.dart';
+import 'package:thriftify_fyp_1/data/repositories/authentication/authentication_repositories.dart';
 import 'package:thriftify_fyp_1/firebase_options.dart';
 
 Future<void> main() async {
