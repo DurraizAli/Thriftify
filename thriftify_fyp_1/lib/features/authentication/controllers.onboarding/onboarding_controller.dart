@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:thriftify_fyp_1/features/authentication/screens/login/login.dart';
 
 class OnBoardingController extends GetxController {
@@ -24,6 +26,13 @@ class OnBoardingController extends GetxController {
 
   void nextPage() {
   if (currentPageIndex.value == 2) {
+    final storage = GetStorage();
+
+    if (kDebugMode) {
+      print('GET STORAGE Next Button');
+      print(storage.read('IsFirstTime'));
+    }
+    storage.write('IsFirstTime', false);
     // If the current page index is 2, navigate to the next page
     Get.offAll(const LoginScreen());
   } else {
