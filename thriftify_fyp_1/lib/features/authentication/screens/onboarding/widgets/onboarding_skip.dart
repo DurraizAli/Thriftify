@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:thriftify_fyp_1/features/authentication/controllers.onboarding/onboarding_controller.dart';
+import 'package:thriftify_fyp_1/features/authentication/controllers/onboarding/onboarding_controller.dart';
 import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
 import 'package:thriftify_fyp_1/utils/device/device_utility.dart';
 

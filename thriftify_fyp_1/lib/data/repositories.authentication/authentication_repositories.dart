@@ -17,12 +17,9 @@ class AuthenticationRepository extends GetxController {
   }
 
   screenRedirect() async {
-
-    if (kDebugMode) {
-      print('GET STORAGE Auth Repo ');
-      print(deviceStorage.read('IsFirstTime'));
-    }
     deviceStorage.writeIfNull('IsFirstTime', true);
-    deviceStorage.read('IsFirstTime')!= true ? Get.offAll(() => const LoginScreen()) : Get.offAll(const OnBoardingScreen());
+    deviceStorage.read('IsFirstTime') == true
+        ? Get.offAll(() => const LoginScreen())
+        : Get.offAll(const OnBoardingScreen());
   }
 }
