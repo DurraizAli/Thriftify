@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "242972939809",
+    "project_id": "thriftify-1a971",
+    "storage_bucket": "thriftify-1a971.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:242972939809:android:4b8b36e3f0867c97b57560",
+        "android_client_info": {
+          "package_name": "com.example.thriftify_fyp_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "242972939809-1vbv0v4415ea3dhprojsbn8btmtl86kq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsXbWUSMpUZaX0HJGwDst2JRheFPlPvnI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "242972939809-1vbv0v4415ea3dhprojsbn8btmtl86kq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "242972939809-80giaqa8gu14msoqnet1ejc3pa549m1q.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.thriftifyFyp1"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
