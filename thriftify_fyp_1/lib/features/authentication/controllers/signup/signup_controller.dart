@@ -27,7 +27,7 @@ class SignupController extends GetxController {
     try {
       //start loading
       TFullScreenLoader.openLoadingDialog(
-          "We are processing your information", TImages.onboarding2);
+          "We are processing your information", TImages.success_animation);
 
       //Check Internet Connection
       final isConnected = await NetworkManager.instance.isConnected();
@@ -76,7 +76,7 @@ class SignupController extends GetxController {
       Get.to(() => const VerifyEmailScreen());
       
       
-    } catch (e) {
+     } catch (e) {
       TFullScreenLoader.stopLoading();
       TLoaders.errorSnackbar(message: e.toString(), title: 'Oh Snap!');
     } 

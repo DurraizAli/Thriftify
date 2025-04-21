@@ -46,42 +46,43 @@ class UserModel {
 
   /// Static function to create an empty user model.
   static UserModel empty() => UserModel(
-        id: "",
-        firstName: "",
-        lastName: "",
-        username: "",
-        email: "",
-        phoneNumber: "",
-        profilePicture: "",
+        id: '',
+        firstName: '',
+        lastName: '',
+        username: '',
+        email: '',
+        phoneNumber: '',
+        profilePicture: '',
       );
 
-  Map<String, dynamic> toJson() => {
-        'firstName': firstName,
+  Map<String, dynamic> toJson()  {
+       return{
+         'firstName': firstName,
         'lastName': lastName,
         'username': username,
         'email': email,
         'phoneNumber': phoneNumber,
         'profilePicture': profilePicture,
       };
+       }
 
   /// Factory method to create a UserModel from JSON data.
   //---------------------------------------------------------------------------------
 
-  // factory UserModel.fromSnapshot(
-  //     DocumentSnapshot<Map<String, dynamic>> document) {
-  //   if (document.data() != null) {
-  //     final data = document.data()!;
+  factory UserModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) {
+  final data = document.data();
+  if (data == null) return UserModel.empty();
 
-  //     return UserModel(
-  //       id: document.id,
-  //       firstName: data['firstName'] ?? '',
-  //       lastName: data['lastName'] ?? '',
-  //       username: data['username'] ?? '',
-  //       email: data['email'] ?? '',
-  //       phoneNumber: data['phoneNumber'] ?? '',
-  //       profilePicture: data['profilePicture'] ?? '',
-  //     );
-  //   }
-  // }
+  return UserModel(
+    id: document.id,
+    firstName: data['firstName'] ?? '',
+    lastName: data['lastName'] ?? '',
+    username: data['username'] ?? '',
+    email: data['email'] ?? '',
+    phoneNumber: data['phoneNumber'] ?? '',
+    profilePicture: data['profilePicture'] ?? '',
+  );
+}
+
   //------------------------------------------------------------------------------------------
 }

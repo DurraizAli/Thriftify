@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:thriftify_fyp_1/utils/constants/colors.dart';
+import 'package:thriftify_fyp_1/utils/constants/image_strings.dart';
 import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
 
 class TAnimationLoaderWidget extends StatelessWidget {
@@ -24,7 +25,7 @@ class TAnimationLoaderWidget extends StatelessWidget {
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Lottie.asset(animation, width: MediaQuery.of(context).size.width * 0.8),
+        const Image(image: AssetImage(TImages.onboarding1)),
         const SizedBox(
           height: TSizes.defaultSpace,
         ),

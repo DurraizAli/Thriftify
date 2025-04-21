@@ -31,7 +31,8 @@ class UserRepository extends GetxController {
     //   throw TPlatformException(e.code).message;
     // } 
     catch (e) {
-      throw "Some thing went wrong";
-    }
+  print("Error saving user: $e");
+  throw Exception("Something went wrong while saving user record.");
+}
   }
 }

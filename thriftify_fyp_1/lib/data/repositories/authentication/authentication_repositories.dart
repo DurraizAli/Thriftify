@@ -22,8 +22,9 @@ class AuthenticationRepository extends GetxController {
   screenRedirect() async {
     deviceStorage.writeIfNull('IsFirstTime', true);
     deviceStorage.read('IsFirstTime') == true
-        ? Get.offAll(() => const LoginScreen())
-        : Get.offAll(const OnBoardingScreen());
+    ? Get.offAll(() => const OnBoardingScreen())
+    : Get.offAll(() => const LoginScreen());
+
   }
 
   //RgisterUser
@@ -35,7 +36,7 @@ class AuthenticationRepository extends GetxController {
         password: password,
       );
     } 
-    // on FirebaseAuthException catch (e) {
+     // on FirebaseAuthException catch (e) {
     //   throw TFirebaseAuthException(e.code).message;
     // } on FirebaseException catch (e) {
     //   throw TFirebaseException(e.code).message;
@@ -45,7 +46,9 @@ class AuthenticationRepository extends GetxController {
     //   throw TPlatformException(e.code).message;
     // }
      catch (e) {
-      throw "Some thing went wrong";
-    }
+  print("Registration error: $e");
+  throw Exception("Something went wrong during registration.");
+}
+
   }
 }

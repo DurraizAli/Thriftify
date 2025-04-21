@@ -7,6 +7,7 @@ import 'package:thriftify_fyp_1/utils/popups/loader.dart';
 class NetworkManager extends GetxController {
   static NetworkManager get instance => Get.find();
   final Connectivity _connectivity = Connectivity();
+  // late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
   late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
   final Rx<ConnectivityResult> _connectionStatus = ConnectivityResult.none.obs;
 
@@ -17,18 +18,14 @@ class NetworkManager extends GetxController {
         _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
   }
 
- //Update the connection status
- Future<void> _updateConnectionStatus(List<ConnectivityResult> results) async { // Updated parameter type
- if (results.isNotEmpty) {
- _connectionStatus.value = results.first; // Or choose the most relevant result
-  if (_connectionStatus.value == ConnectivityResult.none) {
- TLoaders.warningSnackbar(title: "No Internet Connection");
- }
- } else {
- _connectionStatus.value = ConnectivityResult.none;
- TLoaders.warningSnackbar(title: "No Internet Connection");
- }
- }
+  //Update the connection status
+   Future<void> _updateConnectionStatus(List<ConnectivityResult> results) async {
+    if (results.isNotEmpty) {
+      _connectionStatus.value = results.first;
+    } else {
+      _connectionStatus.value = ConnectivityResult.none;
+    }
+  }
 
   // Check internet status
   Future<bool> isConnected() async {
