@@ -96,7 +96,7 @@ class SignupController extends GetxController {
       );
 
       // Navigate to Verify Email Screen
-      Get.to(() => const VerifyEmailScreen());
+      Get.to(() =>  VerifyEmailScreen(email: email.text.trim(),));
     } catch (e) {
       TFullScreenLoader.stopLoading();
       TLoaders.errorSnackbar(

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:thriftify_fyp_1/common/widgets/appbar/appbar.dart';
 import 'package:thriftify_fyp_1/common/widgets/success_screen/success_screen.dart';
+import 'package:thriftify_fyp_1/data/repositories/authentication/authentication_repositories.dart';
+import 'package:thriftify_fyp_1/features/authentication/controllers/signup/verify_email_controller.dart';
 import 'package:thriftify_fyp_1/features/authentication/screens/login/login.dart';
 import 'package:thriftify_fyp_1/utils/constants/image_strings.dart';
 import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
@@ -10,16 +12,21 @@ import 'package:thriftify_fyp_1/utils/constants/text_strings.dart';
 import 'package:thriftify_fyp_1/utils/helpers/helper_functions.dart';
 
 class VerifyEmailScreen extends StatelessWidget {
-  const VerifyEmailScreen({super.key});
+  const VerifyEmailScreen({super.key , this.email});
+
+  final String? email;
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(VerifyEmailController());
+
+
     return Scaffold(
       /// Appbar close icon will first Logout the user & then redirect back to Login Screen()
       /// Reason: We will store the data when user enters the Register Button on Previous screen.
       /// Whenever the user opens the app, we will check if email is verified or not.
       /// If not verified we will always show this Verification screen.
-      appBar: TAppBar(actions: [IconButton(onPressed: () => Get.offAll(const LoginScreen()), icon: const Icon(CupertinoIcons.clear))]),
+      appBar: TAppBar(actions: [IconButton(onPressed: () => AuthenticationRepository.instance.logout(), icon: const Icon(CupertinoIcons.clear))]),
       body: SingleChildScrollView(
         // Padding to Give Default Equal Space on all sides in all screens.
         child: Padding(
@@ -36,26 +43,20 @@ class VerifyEmailScreen extends StatelessWidget {
               /// Title & SubTitle
               Text(TTexts.confirmEmail, style: Theme.of(context).textTheme.headlineMedium, textAlign: TextAlign.center),
               const SizedBox(height: TSizes.spaceBtwItems),
-              Text('Thriftify@gmail.com', style: Theme.of(context).textTheme.labelLarge, textAlign: TextAlign.center),
+              Text(email ?? '', style: Theme.of(context).textTheme.labelLarge, textAlign: TextAlign.center),
               const SizedBox(height: TSizes.spaceBtwItems),
               Text(TTexts.confirmEmailSubTitle, style: Theme.of(context).textTheme.labelMedium, textAlign: TextAlign.center),
               const SizedBox(height: TSizes.spaceBtwSections),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                    onPressed: () => Get.to(
+                    onPressed: () => controller.checkEmailVerifictaionStatus(),
                           /// Success Screen
-                          () => SuccessScreen(
-                            image: TImages.onboarding2,
-                            title: TTexts.yourAccountCreated,
-                            subTitle: TTexts.yourAccountCreatedSubTitle,
-                            onPressed: () => Get.to(() => const LoginScreen()),
-                          ),
-                        ),
+        
                     child: const Text(TTexts.tContinue)),
               ),
               const SizedBox(height: TSizes.spaceBtwItems),
-              SizedBox(width: double.infinity, child: TextButton(onPressed: () {}, child: const Text(TTexts.resendEmail))),
+              SizedBox(width: double.infinity, child: TextButton(onPressed: () => controller.sendEmailVerification(), child: const Text(TTexts.resendEmail))),
             ],
           ),
         ),

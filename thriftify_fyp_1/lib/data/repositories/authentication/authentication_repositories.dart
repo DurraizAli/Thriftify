@@ -7,6 +7,8 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as storage;
 import 'package:thriftify_fyp_1/features/authentication/screens/login/login.dart';
 import 'package:thriftify_fyp_1/features/authentication/screens/onboarding/onboarding.dart';
+import 'package:thriftify_fyp_1/features/authentication/screens/signup/verify_email.dart';
+import 'package:thriftify_fyp_1/navigation_menu.dart';
 
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
@@ -17,19 +19,28 @@ class AuthenticationRepository extends GetxController {
   @override
   void onReady() {
     FlutterNativeSplash.remove();
-    _screenRedirect();
+    screenRedirect();
   }
 
-  Future<void> _screenRedirect() async {
-    deviceStorage.writeIfNull('IsFirstTime', true);
-    final isFirstTime = deviceStorage.read('IsFirstTime') as bool;
+   screenRedirect() async {
+    final user = _auth.currentUser;
 
-    if (isFirstTime) {
-      Get.offAll(() => const LoginScreen());
-    } else {
-      Get.offAll(() => const OnBoardingScreen());
+    if (user != null) {
+      if(user.emailVerified) {
+        Get.offAll(() => const NavigationMenu());
+      }else {
+        Get.offAll(() => VerifyEmailScreen(email: _auth.currentUser?.email,));
+      }
     }
+    else {
+
+    deviceStorage.writeIfNull('IsFirstTime', true);
+    deviceStorage.read('isFirstTime') != true
+    ? Get.offAll(() => const LoginScreen())
+    : Get.offAll(const OnBoardingScreen());
+    
   }
+   }
 
   /// Registers a user using email and password via FirebaseAuth
   Future<UserCredential> registerWithEmailAndPassword(
@@ -44,4 +55,25 @@ class AuthenticationRepository extends GetxController {
       throw Exception("Something went wrong during registration.");
     }
   }
+
+  Future <void> sendEmailVerification() async {
+    try {
+      await _auth.currentUser?.sendEmailVerification();
+    }catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+  Future <void> logout() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+      Get.offAll(() => const LoginScreen());
+    }catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+
+
 }
+
