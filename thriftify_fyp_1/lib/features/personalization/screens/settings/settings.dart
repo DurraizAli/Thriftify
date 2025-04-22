@@ -7,6 +7,7 @@ import 'package:thriftify_fyp_1/common/widgets/custom_shapes/containers/primary_
 import 'package:thriftify_fyp_1/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:thriftify_fyp_1/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:thriftify_fyp_1/common/widgets/texts/section_heading.dart';
+import 'package:thriftify_fyp_1/features/authentication/screens/login/login.dart';
 import 'package:thriftify_fyp_1/features/personalization/screens/profile/profile.dart';
 import 'package:thriftify_fyp_1/utils/constants/colors.dart';
 import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
@@ -88,7 +89,7 @@ class SettingsScreen extends StatelessWidget {
                     trailing: Switch(value: false, onChanged: (value) {}),
                   ),
                    const SizedBox(height: TSizes.spaceBtwSections),
-                  SizedBox(width: double.infinity, child: OutlinedButton(onPressed: () {}, child: const Text('Logout'))),
+                  SizedBox(width: double.infinity, child: OutlinedButton(onPressed: () => Get.offAll(() => const LoginScreen()), child: const Text('Logout'))),
                   const SizedBox(height: TSizes.spaceBtwSections * 2.5),
 
 

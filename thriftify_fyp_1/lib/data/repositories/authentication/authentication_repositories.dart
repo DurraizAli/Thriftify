@@ -78,6 +78,17 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
+  Future <void> sendPasswordResetEmial(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+    }catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+
+
+
   Future<UserCredential?> signInWithGoogle() async {
   try {
     if (kIsWeb) {

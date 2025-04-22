@@ -1,14 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:thriftify_fyp_1/features/authentication/controllers/forget_password/forget_password_controller.dart';
+import 'package:thriftify_fyp_1/features/authentication/screens/login/login.dart';
 import 'package:thriftify_fyp_1/utils/constants/image_strings.dart';
 import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
 import 'package:thriftify_fyp_1/utils/constants/text_strings.dart';
 import 'package:thriftify_fyp_1/utils/helpers/helper_functions.dart';
 
 
-class ResetPassword extends StatelessWidget {
-  const ResetPassword({super.key});
+class ResetPasswordScreen extends StatelessWidget {
+  const ResetPasswordScreen({super.key, required this.email});
+
+  final String email;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +47,11 @@ class ResetPassword extends StatelessWidget {
               const SizedBox(height: TSizes.spaceBtwSections),
 
               /// Buttons
-              SizedBox(width: double.infinity, child: ElevatedButton(onPressed: () {}, child:  Text(TTexts.done,))),
+              SizedBox(width: double.infinity, child: ElevatedButton(onPressed: () => Get.offAll(()=> const LoginScreen()), child:  Text(TTexts.done,))),
+              const SizedBox(height: TSizes.spaceBtwItems,),
+
+
+              SizedBox(width: double.infinity, child: ElevatedButton(onPressed: () => ForgetPasswordController.instance.resendPasswordResetEmail(email), child:  Text(TTexts.done,))),
               
               
             ],
