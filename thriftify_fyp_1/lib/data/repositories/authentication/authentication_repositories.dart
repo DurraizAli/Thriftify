@@ -42,6 +42,19 @@ class AuthenticationRepository extends GetxController {
   }
    }
 
+   Future<UserCredential> loginWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      return await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+    } catch (e, stackTrace) {
+      debugPrint("[AuthRepository] Registration error: $e\n$stackTrace");
+      throw Exception("Something went wrong during registration.");
+    }
+  }
+
   /// Registers a user using email and password via FirebaseAuth
   Future<UserCredential> registerWithEmailAndPassword(
       String email, String password) async {
