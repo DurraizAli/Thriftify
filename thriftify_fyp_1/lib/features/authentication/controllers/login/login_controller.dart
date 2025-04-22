@@ -3,7 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart';
 import 'package:thriftify_fyp_1/data/repositories/authentication/authentication_repositories.dart';
+import 'package:thriftify_fyp_1/features/personalization/controllers/user_controller.dart';
 import 'package:thriftify_fyp_1/utils/constants/image_strings.dart';
 import 'package:thriftify_fyp_1/utils/helpers/network_manager.dart';
 import 'package:thriftify_fyp_1/utils/popups/full_screen_loader.dart';
@@ -16,10 +18,12 @@ class LoginController extends GetxController{
   final email = TextEditingController();
   final password = TextEditingController();
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
+  final userController = Get.put(UserController());
 
+  @override
   void onInit() {
-    email.text = locaLStorage.read('REMEBER_ME_EMAIL');
-    password.text = locaLStorage.read('REMEMBER_ME_PASSWORD');
+    email.text = locaLStorage.read('REMEMBER_ME_EMAIL') ?? '';
+    password.text = locaLStorage.read('REMEMBER_ME_PASSWORD')?? '';
     super.onInit();
   }
 
@@ -40,7 +44,7 @@ class LoginController extends GetxController{
       }
 
       if (rememberMe.value) {
-        locaLStorage.write('REMEBER_ME_EMAIL', email.text.trim());
+        locaLStorage.write('REMEMBER_ME_EMAIL', email.text.trim());
         locaLStorage.write('REMEBER_ME_PASSWORD', password.text.trim());
       }
 
@@ -58,6 +62,31 @@ class LoginController extends GetxController{
       TLoaders.errorSnackbar(title: 'Oh Snap', message: e.toString());
     }
   }
+
+
+  Future<void> googleSignIn() async {
+    try{
+      TFullScreenLoader.openLoadingDialog('Logging you in...', TImages.promoBanner1);
+      final isConnected = await NetworkManager.instance.isConnected();
+      if(!isConnected) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      final userCredentials = await AuthenticationRepository.instance.signInWithGoogle();
+
+
+      await userController.saveUserRecord(userCredentials);
+      TFullScreenLoader.stopLoading();
+
+      AuthenticationRepository.instance.screenRedirect();
+    } catch (e) {
+      TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackbar(title: 'Oh Snap', message: e.toString());
+    }
+  }
+
+
   
 
 }

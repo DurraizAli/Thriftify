@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as storage;
 import 'package:thriftify_fyp_1/features/authentication/screens/login/login.dart';
 import 'package:thriftify_fyp_1/features/authentication/screens/onboarding/onboarding.dart';
@@ -77,10 +78,44 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
+  Future<UserCredential?> signInWithGoogle() async {
+  try {
+    if (kIsWeb) {
+      // 🔥 Web-specific sign-in
+      GoogleAuthProvider googleProvider = GoogleAuthProvider();
+
+      return await FirebaseAuth.instance.signInWithPopup(googleProvider);
+    } else {
+      // 📱 Mobile sign-in
+      final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
+      final GoogleSignInAuthentication? googleAuth = await userAccount?.authentication;
+
+      final credentials = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      return await FirebaseAuth.instance.signInWithCredential(credentials);
+    }
+  } catch (e) {
+    if (kDebugMode) print('Google sign-in error: $e');
+    return null;
+  }
+}
+
+
+
+
+
+
+
+
   Future <void> logout() async {
     try {
+      await GoogleSignIn().signOut();
       await FirebaseAuth.instance.signOut();
       Get.offAll(() => const LoginScreen());
+      
     }catch (e) {
       throw 'Something went wrong. Please try again';
     }
