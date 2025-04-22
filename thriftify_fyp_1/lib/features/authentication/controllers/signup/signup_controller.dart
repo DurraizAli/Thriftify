@@ -12,7 +12,8 @@ import 'package:thriftify_fyp_1/utils/popups/loader.dart';
 
 class SignupController extends GetxController {
   static SignupController get instance => Get.find();
-  //Variables
+
+  // Controllers
   final hidePassword = true.obs;
   final privacyPolicy = true.obs;
   final email = TextEditingController();
@@ -21,64 +22,88 @@ class SignupController extends GetxController {
   final password = TextEditingController();
   final firstName = TextEditingController();
   final phoneNumber = TextEditingController();
-  GlobalKey<FormState> signupFormKey = GlobalKey<FormState>();
-  //SignUp
-  void signup() async {
-    try {
-      //start loading
-      TFullScreenLoader.openLoadingDialog(
-          "We are processing your information", TImages.success_animation);
 
-      //Check Internet Connection
+  final signupFormKey = GlobalKey<FormState>();
+
+  // Sign Up Function
+  Future<void> signup() async {
+    try {
+      // Show loading dialog
+      TFullScreenLoader.openLoadingDialog(
+        "We are processing your information",
+        TImages.success_animation,
+      );
+
+      // Check Internet Connection
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
+        TFullScreenLoader.stopLoading();
+        TLoaders.errorSnackbar(
+          title: "No Internet Connection",
+          message: "Please check your connection and try again.",
+        );
         return;
       }
 
-      //Form Validation
+      // Form Validation
       if (!signupFormKey.currentState!.validate()) {
         TFullScreenLoader.stopLoading();
         return;
       }
 
-      //Check privacy policy
+      // Privacy Policy Check
       if (!privacyPolicy.value) {
+        TFullScreenLoader.stopLoading();
         TLoaders.warningSnackbar(
-            title: "Accept the privacy policy to continue",
-            message:
-                "In order to create account you must have to accept the privacy policy and terms of service");
+          title: "Accept the privacy policy to continue",
+          message:
+              "In order to create an account, you must accept the privacy policy and terms of service.",
+        );
         return;
       }
 
-      // add data in firebase, REgister user
+      // Register user with Firebase Auth
       final userCredential = await AuthenticationRepository.instance
-          .registerWithEmailAndPassword(email.text.trim(), password.text.trim())
-          .then((value) {});
+          .registerWithEmailAndPassword(
+        email.text.trim(),
+        password.text.trim(),
+      );
 
-      //save data in Firebase Firestore
+      if (userCredential.user == null) {
+        TFullScreenLoader.stopLoading();
+        throw Exception("User registration failed");
+      }
+
+      // Create UserModel and save in Firestore
       final newUser = UserModel(
-          id: userCredential.user!.uid,
-          firstName: firstName.text.trim(),
-          lastName: lastName.text.trim(),
-          username: username.text.trim(),
-          email: email.text.trim(),
-          phoneNumber: phoneNumber.text.trim(),
-          profilePicture: '');
+        id: userCredential.user!.uid,
+        firstName: firstName.text.trim(),
+        lastName: lastName.text.trim(),
+        username: username.text.trim(),
+        email: email.text.trim(),
+        phoneNumber: phoneNumber.text.trim(),
+        profilePicture: '',
+      );
 
       final userRepository = Get.put(UserRepository());
       await userRepository.saveUserRecord(newUser);
 
-      //success msg
-      TLoaders.successSnackbar(
-          message: "Your Account has been created, Verify Email Address",
-          title: 'Congratulations!');
-      //Move to verify email screen
-      Get.to(() => const VerifyEmailScreen());
-      
-      
-     } catch (e) {
+      // Success feedback
       TFullScreenLoader.stopLoading();
-      TLoaders.errorSnackbar(message: e.toString(), title: 'Oh Snap!');
-    } 
+      TLoaders.successSnackbar(
+        title: 'Congratulations!',
+        message: "Your account has been created. Verify your email address.",
+      );
+
+      // Navigate to Verify Email Screen
+      Get.to(() => const VerifyEmailScreen());
+    } catch (e) {
+      TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackbar(
+        title: 'Oh Snap!',
+        message: e.toString(),
+      );
+    }
   }
 }
+

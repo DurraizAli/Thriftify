@@ -3,16 +3,18 @@ import 'package:thriftify_fyp_1/utils/formatters/formatter.dart';
 
 /// Model class representing user data.
 class UserModel {
-  // Keep those values final which you do not want to update
+  /// Immutable values
   final String id;
-  String firstName;
-  String lastName;
   final String username;
   final String email;
+
+  /// Mutable fields
+  String firstName;
+  String lastName;
   String phoneNumber;
   String profilePicture;
 
-  /// Constructor for UserModel.
+  /// Constructor
   UserModel({
     required this.id,
     required this.firstName,
@@ -23,28 +25,21 @@ class UserModel {
     required this.profilePicture,
   });
 
-  /// Helper function to get the full name.
+  /// Computed properties
   String get fullName => '$firstName $lastName';
-
-  /// Helper function to format phone number.
   String get formattedPhoneNo => TFormatter.formatPhoneNumber(phoneNumber);
 
-  /// Static function to split full name into first and last name.
-  static List<String> nameParts(fullName) => fullName.split(" ");
+  /// Utility methods
+  static List<String> nameParts(String fullName) => fullName.split(" ");
 
-  /// Static function to generate a username from the full name.
-  static String generateUsername(fullName) {
-    List<String> nameParts = fullName.split(" ");
-    String firstName = nameParts[0].toLowerCase();
-    String lastName = nameParts.length > 1 ? nameParts[1].toLowerCase() : "";
-
-    String camelCaseUsername =
-        "$firstName$lastName"; // Combine first and last name
-    String usernameWithPrefix = "cwt_$camelCaseUsername"; // Add "cwt_" prefix
-    return usernameWithPrefix;
+  static String generateUsername(String fullName) {
+    final parts = fullName.split(" ");
+    final first = parts.isNotEmpty ? parts[0].toLowerCase() : '';
+    final last = parts.length > 1 ? parts[1].toLowerCase() : '';
+    return 'cwt_${first + last}';
   }
 
-  /// Static function to create an empty user model.
+  /// Empty user factory
   static UserModel empty() => UserModel(
         id: '',
         firstName: '',
@@ -55,37 +50,29 @@ class UserModel {
         profilePicture: '',
       );
 
-  Map<String, dynamic> toJson() {
-    return {
-      'firstName': firstName,
-      'lastName': lastName,
-      'username': username,
-      'email': email,
-      'phoneNumber': phoneNumber,
-      'profilePicture': profilePicture,
-    };
+  /// Convert to JSON
+  Map<String, dynamic> toJson() => {
+        'firstName': firstName,
+        'lastName': lastName,
+        'username': username,
+        'email': email,
+        'phoneNumber': phoneNumber,
+        'profilePicture': profilePicture,
+      };
+
+  /// Create UserModel from Firestore snapshot
+  factory UserModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) {
+    final data = document.data();
+    if (data == null) throw Exception('Document data is null');
+
+    return UserModel(
+      id: document.id,
+      firstName: data['firstName'] ?? '',
+      lastName: data['lastName'] ?? '',
+      username: data['username'] ?? '',
+      email: data['email'] ?? '',
+      phoneNumber: data['phoneNumber'] ?? '',
+      profilePicture: data['profilePicture'] ?? '',
+    );
   }
-
-  /// Factory method to create a UserModel from JSON data.
-  //---------------------------------------------------------------------------------
-
-  factory UserModel.fromSnapshot(
-      DocumentSnapshot<Map<String, dynamic>> document) {
-    if (document.data() != null) {
-      final data = document.data()!;
-      return UserModel(
-        id: document.id,
-        firstName: data['firstName'] ?? '',
-        lastName: data['lastName'] ?? '',
-        username: data['username'] ?? '',
-        email: data['email'] ?? '',
-        phoneNumber: data['phoneNumber'] ?? '',
-        profilePicture: data['profilePicture'] ?? '',
-      );
-    } else {
-      throw Exception('Document data is null');
-    }
-  }
-
-  //------------------------------------------------------------------------------------------
-}
+}  

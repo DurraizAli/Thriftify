@@ -12,22 +12,26 @@ class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
 
   final deviceStorage = GetStorage();
-  final _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  @override
   void onReady() {
     FlutterNativeSplash.remove();
-    screenRedirect();
+    _screenRedirect();
   }
 
-  screenRedirect() async {
+  Future<void> _screenRedirect() async {
     deviceStorage.writeIfNull('IsFirstTime', true);
-    deviceStorage.read('IsFirstTime') == true
-    ? Get.offAll(() => const OnBoardingScreen())
-    : Get.offAll(() => const LoginScreen());
+    final isFirstTime = deviceStorage.read('IsFirstTime') as bool;
 
+    if (isFirstTime) {
+      Get.offAll(() => const LoginScreen());
+    } else {
+      Get.offAll(() => const OnBoardingScreen());
+    }
   }
 
-  //RgisterUser
+  /// Registers a user using email and password via FirebaseAuth
   Future<UserCredential> registerWithEmailAndPassword(
       String email, String password) async {
     try {
@@ -35,20 +39,9 @@ class AuthenticationRepository extends GetxController {
         email: email,
         password: password,
       );
-    } 
-     // on FirebaseAuthException catch (e) {
-    //   throw TFirebaseAuthException(e.code).message;
-    // } on FirebaseException catch (e) {
-    //   throw TFirebaseException(e.code).message;
-    // } on FormatException catch (_) {
-    //   throw TFormatException();
-    // } on PlatformException catch (e) {
-    //   throw TPlatformException(e.code).message;
-    // }
-     catch (e) {
-  print("Registration error: $e");
-  throw Exception("Something went wrong during registration.");
-}
-
+    } catch (e, stackTrace) {
+      debugPrint("[AuthRepository] Registration error: $e\n$stackTrace");
+      throw Exception("Something went wrong during registration.");
+    }
   }
 }
