@@ -31,6 +31,8 @@ dependencies:
   #product specific
   readmore: ^2.2.0
   carousel_slider: ^5.0.0
+  #loader_shimmer
+  shimmer: ^3.0.0
 
   #firebase
   firebase_core: ^3.13.0

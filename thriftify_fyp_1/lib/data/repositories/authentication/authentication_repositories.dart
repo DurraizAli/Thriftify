@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as storage;
+import 'package:thriftify_fyp_1/data/repositories/user/user_repository.dart';
 import 'package:thriftify_fyp_1/features/authentication/screens/login/login.dart';
 import 'package:thriftify_fyp_1/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:thriftify_fyp_1/features/authentication/screens/signup/verify_email.dart';
@@ -17,33 +18,35 @@ class AuthenticationRepository extends GetxController {
   final deviceStorage = GetStorage();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  //get authenticated user
+  User? get authUser => _auth.currentUser;
+
   @override
   void onReady() {
     FlutterNativeSplash.remove();
     screenRedirect();
   }
 
-   screenRedirect() async {
+  void screenRedirect() async {
     final user = _auth.currentUser;
 
     if (user != null) {
-      if(user.emailVerified) {
+      if (user.emailVerified) {
         Get.offAll(() => const NavigationMenu());
-      }else {
-        Get.offAll(() => VerifyEmailScreen(email: _auth.currentUser?.email,));
+      } else {
+        Get.offAll(() => VerifyEmailScreen(
+              email: _auth.currentUser?.email,
+            ));
       }
+    } else {
+      deviceStorage.writeIfNull('IsFirstTime', true);
+      deviceStorage.read('isFirstTime') != true
+          ? Get.offAll(() => const LoginScreen())
+          : Get.offAll(const OnBoardingScreen());
     }
-    else {
-
-    deviceStorage.writeIfNull('IsFirstTime', true);
-    deviceStorage.read('isFirstTime') != true
-    ? Get.offAll(() => const LoginScreen())
-    : Get.offAll(const OnBoardingScreen());
-    
   }
-   }
 
-   Future<UserCredential> loginWithEmailAndPassword(
+  Future<UserCredential> loginWithEmailAndPassword(
       String email, String password) async {
     try {
       return await _auth.signInWithEmailAndPassword(
@@ -70,69 +73,78 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-  Future <void> sendEmailVerification() async {
+  Future<void> sendEmailVerification() async {
     try {
       await _auth.currentUser?.sendEmailVerification();
-    }catch (e) {
+    } catch (e) {
       throw 'Something went wrong. Please try again';
     }
   }
 
-  Future <void> sendPasswordResetEmial(String email) async {
+  Future<void> sendPasswordResetEmial(String email) async {
     try {
       await _auth.sendPasswordResetEmail(email: email);
-    }catch (e) {
+    } catch (e) {
       throw 'Something went wrong. Please try again';
     }
   }
 
-
-
-
   Future<UserCredential?> signInWithGoogle() async {
-  try {
-    if (kIsWeb) {
-      // 🔥 Web-specific sign-in
-      GoogleAuthProvider googleProvider = GoogleAuthProvider();
+    try {
+      if (kIsWeb) {
+        // 🔥 Web-specific sign-in
+        GoogleAuthProvider googleProvider = GoogleAuthProvider();
 
-      return await FirebaseAuth.instance.signInWithPopup(googleProvider);
-    } else {
-      // 📱 Mobile sign-in
-      final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
-      final GoogleSignInAuthentication? googleAuth = await userAccount?.authentication;
+        return await FirebaseAuth.instance.signInWithPopup(googleProvider);
+      } else {
+        // 📱 Mobile sign-in
+        final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
+        final GoogleSignInAuthentication? googleAuth =
+            await userAccount?.authentication;
 
-      final credentials = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken,
-      );
+        final credentials = GoogleAuthProvider.credential(
+          accessToken: googleAuth?.accessToken,
+          idToken: googleAuth?.idToken,
+        );
 
-      return await FirebaseAuth.instance.signInWithCredential(credentials);
+        return await FirebaseAuth.instance.signInWithCredential(credentials);
+      }
+    } catch (e) {
+      if (kDebugMode) print('Google sign-in error: $e');
+      return null;
     }
-  } catch (e) {
-    if (kDebugMode) print('Google sign-in error: $e');
-    return null;
   }
-}
 
-
-
-
-
-
-
-
-  Future <void> logout() async {
+  Future<void> logout() async {
     try {
       await GoogleSignIn().signOut();
       await FirebaseAuth.instance.signOut();
       Get.offAll(() => const LoginScreen());
-      
-    }catch (e) {
+    } catch (e) {
       throw 'Something went wrong. Please try again';
     }
   }
 
+  Future<void> reAuthenticateWithEmailAndPassword(
+      String emails, String passwords) async {
+    try {
+      AuthCredential credential =
+          EmailAuthProvider.credential(email: emails, password: passwords);
+          await _auth.currentUser!.reauthenticateWithCredential(credential);
 
+    } catch (e) {
+        
+        throw Exception("Something went wrong during re-authentication." + e.toString());
+    }
+  }
 
+  Future<void> deleteAccount() async{
+    try{
+        await UserRepository.instance.removeUserRecord(_auth.currentUser!.uid);
+        await _auth.currentUser?.delete();
+    }catch(e){
+        debugPrint("[AuthRepository] Account deletion error: $e");
+        throw Exception("Something went wrong during account deletion.");
+    }
+  }
 }
-

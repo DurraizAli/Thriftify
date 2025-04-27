@@ -12,7 +12,7 @@ class TPrimaryHeaderContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return TCurvedEdgeWidget(
       child: Container(
-        color: TColors.primary,
+        color: const Color.fromARGB(255, 38, 137, 98),
         
         //stack is used to display widgets on top of each other
         child: Stack(
