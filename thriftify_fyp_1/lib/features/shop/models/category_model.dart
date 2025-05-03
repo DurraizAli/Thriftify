@@ -46,6 +46,6 @@ class CategoryModel {
     } else {
       return CategoryModel.empty();
     }
-  }
+  } 
  
 }

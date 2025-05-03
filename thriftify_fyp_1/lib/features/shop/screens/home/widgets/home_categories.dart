@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:get/instance_manager.dart';
 import 'package:thriftify_fyp_1/common/widgets/shimmers/category_shimmer.dart';
 import 'package:thriftify_fyp_1/features/shop/controllers/category_controller.dart';
 import 'package:thriftify_fyp_1/features/shop/screens/home/widgets/image_text_widgets/vertiacl_image_text.dart';

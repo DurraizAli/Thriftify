@@ -5,8 +5,9 @@ import 'package:thriftify_fyp_1/utils/popups/loader.dart';
 
 class CategoryController extends GetxController {
   static CategoryController get instance => Get.find();
+   final _categoryRepository = Get.put(CategoryRepository());
   final isLoading = false.obs;
-  final _categoryRepository = Get.put(CategoryRepository());
+ 
   RxList<CategoryModel> allCategories = <CategoryModel>[].obs;
   RxList<CategoryModel> featuredCategories = <CategoryModel>[].obs;
 
