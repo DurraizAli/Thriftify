@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:thriftify_fyp_1/common/widgets/appbar/appbar.dart';
 import 'package:thriftify_fyp_1/common/widgets/images/t_circular_image.dart';
+import 'package:thriftify_fyp_1/common/widgets/shimmers/shimmer.dart';
 import 'package:thriftify_fyp_1/common/widgets/texts/section_heading.dart';
 
 import 'package:thriftify_fyp_1/features/personalization/controllers/user_controller.dart';

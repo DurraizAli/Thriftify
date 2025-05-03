@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:thriftify_fyp_1/common/widgets/shimmers/shimmer.dart';
 import 'package:thriftify_fyp_1/features/shop/screens/home/widgets/home_appbar.dart';
 
 import '../../../utils/constants/colors.dart';
