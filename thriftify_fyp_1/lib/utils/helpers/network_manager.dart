@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:thriftify_fyp_1/utils/popups/loader.dart';
 
 class NetworkManager extends GetxController {
   static NetworkManager get instance => Get.find();

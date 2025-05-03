@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:thriftify_fyp_1/common/styles/shadows.dart';
 import 'package:thriftify_fyp_1/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:thriftify_fyp_1/common/widgets/icons/t_circular_icon.dart';
 import 'package:thriftify_fyp_1/common/widgets/images/t_rounded_image.dart';

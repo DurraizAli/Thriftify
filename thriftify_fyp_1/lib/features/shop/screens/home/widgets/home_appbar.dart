@@ -51,12 +51,12 @@ class THomeAppBar extends StatelessWidget {
 
 class TShimmerEffect extends StatelessWidget {
   const TShimmerEffect({
-    Key? key,
+    super.key,
     required this.width,
     required this.height,
     this.radius = 15,
     this.color,
-  }) : super(key: key);
+  });
 
   /// A widget that creates a shimmer effect for loading placeholders.
 

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:thriftify_fyp_1/utils/constants/colors.dart';
-import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
 
 // class TCheckboxTheme {
 //   TCheckboxTheme._(); // To avoid creating instances

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:thriftify_fyp_1/features/personalization/controllers/user_controller.dart';
@@ -8,7 +7,7 @@ import 'package:thriftify_fyp_1/utils/constants/text_strings.dart';
 import 'package:thriftify_fyp_1/utils/validators/validation.dart';
 
 class ReAuthLoginForm extends StatelessWidget {
-  const ReAuthLoginForm({Key? key}) : super(key: key);
+  const ReAuthLoginForm({super.key});
 
   @override
   Widget build(BuildContext context) {

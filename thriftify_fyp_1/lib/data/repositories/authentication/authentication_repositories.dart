@@ -1,11 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:http/http.dart' as storage;
 import 'package:thriftify_fyp_1/data/repositories/user/user_repository.dart';
 import 'package:thriftify_fyp_1/features/authentication/screens/login/login.dart';
 import 'package:thriftify_fyp_1/features/authentication/screens/onboarding/onboarding.dart';
@@ -134,7 +132,7 @@ class AuthenticationRepository extends GetxController {
 
     } catch (e) {
         
-        throw Exception("Something went wrong during re-authentication." + e.toString());
+        throw Exception("Something went wrong during re-authentication.$e");
     }
   }
 

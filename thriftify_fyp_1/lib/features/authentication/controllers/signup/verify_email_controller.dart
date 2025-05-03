@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:thriftify_fyp_1/common/widgets/success_screen/success_screen.dart';
 import 'package:thriftify_fyp_1/data/repositories/authentication/authentication_repositories.dart';

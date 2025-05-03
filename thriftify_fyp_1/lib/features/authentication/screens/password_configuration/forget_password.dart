@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:thriftify_fyp_1/features/authentication/controllers/forget_password/forget_password_controller.dart';
-import 'package:thriftify_fyp_1/features/authentication/screens/password_configuration/reset_password.dart';
 import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
 import 'package:thriftify_fyp_1/utils/constants/text_strings.dart';
 import 'package:thriftify_fyp_1/utils/validators/validation.dart';
@@ -30,7 +29,7 @@ class ForgetPassword extends StatelessWidget {
               key: controller.forgetPasswordFormKey,
               child: TextFormField(
                 controller: controller.email,
-                validator: TValidator.validateEmail, decoration: InputDecoration(labelText: TTexts.email, prefixIcon: Icon(Iconsax.direct_right)),)),
+                validator: TValidator.validateEmail, decoration: const InputDecoration(labelText: TTexts.email, prefixIcon: Icon(Iconsax.direct_right)),)),
             const SizedBox(height: TSizes.spaceBtwItems,),
            SizedBox(
             width: double.infinity,

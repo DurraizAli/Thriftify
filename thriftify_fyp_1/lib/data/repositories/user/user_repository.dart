@@ -1,15 +1,11 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart' as storage;
-import 'package:thriftify_fyp_1/data/exception/t_firebase_exception.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:thriftify_fyp_1/data/repositories/authentication/authentication_repositories.dart';
-import 'package:thriftify_fyp_1/features/authentication/screens/login/login.dart';
-import 'package:thriftify_fyp_1/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:thriftify_fyp_1/features/personalization/models/user_model.dart';
 
 class UserRepository extends GetxController {
@@ -61,10 +57,15 @@ class UserRepository extends GetxController {
   //update anyfield in user data in Firestore
   Future<void> updateSingleField(Map<String, dynamic> json) async {
     try {
-      await _db.collection("Users").doc(AuthenticationRepository.instance.authUser?.uid).update(json);
+      await _db
+          .collection("Users")
+          .doc(AuthenticationRepository.instance.authUser?.uid)
+          .update(json);
     } catch (e, stackTrace) {
-      debugPrint("[UserRepository] Error updating single field $e\n$stackTrace");
-      throw Exception("Something went wrong while updating single field user record.");
+      debugPrint(
+          "[UserRepository] Error updating single field $e\n$stackTrace");
+      throw Exception(
+          "Something went wrong while updating single field user record.");
     }
   }
 
@@ -72,10 +73,21 @@ class UserRepository extends GetxController {
   Future<void> removeUserRecord(String userId) async {
     try {
       await _db.collection("Users").doc(userId).delete();
-      
     } catch (e, stackTrace) {
       debugPrint("[UserRepository] Error deleting user: $e\n$stackTrace");
       throw Exception("Something went wrong while deleting user record.");
+    }
+  }
+
+  //method to add images to firebase storage
+  Future<String> uploadImage(String path, XFile image) async {
+    try {
+      final ref = FirebaseStorage.instance.ref(path).child(image.name);
+      await ref.putFile(File(image.path));
+      final url = await ref.getDownloadURL();
+      return url;
+    } catch (e) {
+      throw 'something went wrong while uploading image to firebase storage=> $e';
     }
   }
 }

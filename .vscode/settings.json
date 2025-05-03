@@ -1,3 +1,5 @@
 {
-    "cmake.sourceDirectory": "C:/Users/DELL/Documents/GitHub/Thriftify/thriftify_fyp_1/windows/flutter"
+    "cmake.sourceDirectory": "C:/Users/DELL/Documents/GitHub/Thriftify/thriftify_fyp_1/windows/flutter",
+    "java.configuration.updateBuildConfiguration": "interactive",
+
 }

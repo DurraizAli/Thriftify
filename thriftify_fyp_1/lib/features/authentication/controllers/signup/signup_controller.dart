@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:thriftify_fyp_1/data/repositories/authentication/authentication_repositories.dart';

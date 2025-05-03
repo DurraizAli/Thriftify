@@ -1,0 +1,2 @@
+C:/Users/DELL/Documents/GitHub/Thriftify/thriftify_fyp_1/android/app/.cxx/RelWithDebInfo/1q2q4o2z/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Users/DELL/Documents/GitHub/Thriftify/thriftify_fyp_1/android/app/.cxx/RelWithDebInfo/1q2q4o2z/armeabi-v7a/CMakeFiles/rebuild_cache.dir

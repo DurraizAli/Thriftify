@@ -11,11 +11,12 @@ import 'package:thriftify_fyp_1/features/personalization/screens/profile/update_
 import 'package:thriftify_fyp_1/features/personalization/screens/profile/update_data_UI/update_username.dart';
 import 'package:thriftify_fyp_1/features/personalization/screens/profile/widgets/profile_menu.dart';
 import 'package:thriftify_fyp_1/features/personalization/screens/profile/update_data_UI/change_name.dart';
+import 'package:thriftify_fyp_1/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:thriftify_fyp_1/utils/constants/image_strings.dart';
 import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({Key? key}) : super(key: key);
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,61 +37,58 @@ class ProfileScreen extends StatelessWidget {
                 width: double.infinity,
                 child: Column(
                   children: [
-                    const TCircularImage(
-                        image: TImages.user, width: 80, height: 80),
+                    Obx(() {
+                      final networkImage = controller.user.value.profilePicture;
+                      final image =
+                          networkImage.isNotEmpty ? networkImage : TImages.user;
+                      return controller.imageUploading.value
+                          ? const TShimmerEffect(
+                              width: 80, height: 80, radius: 80)
+                          : TCircularImage(
+                              image: image,
+                              width: 80,
+                              height: 80,
+                              isNetworkImage: networkImage.isNotEmpty);
+                    }),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () => controller.uploadUserProfilePicture(),
                         child: const Text('Change Profile Picture')),
                   ],
                 ),
               ),
-
-
               const SizedBox(height: TSizes.spaceBtwItems / 2),
               const Divider(),
               const SizedBox(height: TSizes.spaceBtwItems),
-
-
               const TSectionHeading(
                   title: 'Profile Information', showActionButton: false),
-                  
-
               TProfileMenu(
-                  onPressed: ()=> Get.to(()=> const ChangeName()),
+                  onPressed: () => Get.to(() => const ChangeName()),
                   title: 'Name',
                   value: controller.user.value.fullName),
-
               TProfileMenu(
-                  onPressed: () => Get.to(()=> const ChangeUserName() ),
+                  onPressed: () => Get.to(() => const ChangeUserName()),
                   title: 'Username',
                   value: controller.user.value.username),
-
               const SizedBox(height: TSizes.spaceBtwItems),
               const Divider(),
               const SizedBox(height: TSizes.spaceBtwItems),
-
               const TSectionHeading(
                   title: 'Personal Information', showActionButton: false),
               const SizedBox(height: TSizes.spaceBtwItems),
-
               TProfileMenu(
                   onPressed: () {},
                   title: 'User ID',
                   value: controller.user.value.id,
                   icon: Iconsax.copy),
-
               TProfileMenu(
-                  onPressed: ()=> Get.to(()=> const ChangeEmail()),
+                  onPressed: () => Get.to(() => const ChangeEmail()),
                   title: 'E-mail',
                   value: controller.user.value.email),
-
               TProfileMenu(
-                  onPressed: () =>Get.to(()=> const ChangePhoneNumber()),
+                  onPressed: () => Get.to(() => const ChangePhoneNumber()),
                   title: 'Phone Number',
                   value: controller.user.value.phoneNumber),
-
               TProfileMenu(onPressed: () {}, title: 'Gender', value: 'Male'),
-
               TProfileMenu(
                   onPressed: () {},
                   title: 'Date of Birth',

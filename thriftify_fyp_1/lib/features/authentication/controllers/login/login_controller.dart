@@ -1,9 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart';
 import 'package:thriftify_fyp_1/data/repositories/authentication/authentication_repositories.dart';
 import 'package:thriftify_fyp_1/features/personalization/controllers/user_controller.dart';
 import 'package:thriftify_fyp_1/utils/constants/image_strings.dart';

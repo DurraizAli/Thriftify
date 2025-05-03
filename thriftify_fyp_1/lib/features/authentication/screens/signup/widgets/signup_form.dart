@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:thriftify_fyp_1/features/authentication/controllers/signup/signup_controller.dart';
-import 'package:thriftify_fyp_1/features/authentication/screens/signup/verify_email.dart';
 import 'package:thriftify_fyp_1/features/authentication/screens/signup/widgets/terms_condition_checkbox.dart';
 import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
 import 'package:thriftify_fyp_1/utils/constants/text_strings.dart';
@@ -77,7 +76,7 @@ class TSignupForm extends StatelessWidget {
               obscureText: controller.hidePassword.value,
               decoration:  InputDecoration(
                 labelText: TTexts.password,
-                prefixIcon: Icon(Iconsax.password_check),
+                prefixIcon: const Icon(Iconsax.password_check),
                 suffixIcon: IconButton(onPressed: () => controller.hidePassword.value = !controller.hidePassword.value,
                  icon:  Icon(controller.hidePassword.value? Iconsax.eye_slash : Iconsax.eye)),
               ),

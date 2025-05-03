@@ -14,8 +14,8 @@ class TRatingAndShare extends StatelessWidget {
       children: [
         Row(
           children: [
-              Icon(Iconsax.star5,color: Colors.amber, size: 24,),
-              SizedBox(width:  TSizes.spaceBtwItems/ 2,),
+              const Icon(Iconsax.star5,color: Colors.amber, size: 24,),
+              const SizedBox(width:  TSizes.spaceBtwItems/ 2,),
               Text.rich(
                 TextSpan(
                   children: [
