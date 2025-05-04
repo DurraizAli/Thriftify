@@ -23,7 +23,7 @@ class TPromoSlider extends StatelessWidget {
         CarouselSlider(
          options: CarouselOptions(viewportFraction: 1,
          onPageChanged: (index, _)=> controller.UpdatePageIndicator(index)),
-         items: banners.map((url) => TRoundedImage(imageUrl: url, isNetworkImage: true)).toList()
+         items: banners.map((url) => TRoundedImage(imageUrl: url, isNetworkImage: false)).toList()
         ),
         const SizedBox(height: TSizes.spaceBtwItems,),
         Center(
