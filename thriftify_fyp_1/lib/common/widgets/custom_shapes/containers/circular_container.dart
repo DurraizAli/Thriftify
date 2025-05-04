@@ -5,11 +5,11 @@ import 'package:thriftify_fyp_1/utils/constants/colors.dart';
 class TCircularContainer extends StatelessWidget {
   const TCircularContainer({
     super.key,
-    this.width = 165,
-    this.height = 165,
-    this.radius = 165,
+    this.width = 8,
+    this.height = 8,
+    this.radius = 100,
     this.child,
-    this.backgroundColor = TColors.white, this.padding=0, this.margin,
+    this.backgroundColor = const Color.fromARGB(255, 37, 121, 102), this.padding=0, this.margin,
   });
 
   final double? width;
@@ -23,12 +23,12 @@ class TCircularContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 165,
-      height: 165,
+      width: width,
+      height: height,
       padding: const EdgeInsets.all(0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(165),
-        color: TColors.textWhite.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(radius),
+        color: backgroundColor
       ),
       child: child,
     );

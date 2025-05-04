@@ -10,34 +10,57 @@ import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
 
 class TPromoSlider extends StatelessWidget {
   const TPromoSlider({
-    super.key, required this.banners,
+    super.key,
+    required this.banners,
   });
 
   final List<String> banners;
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(HomeController());
+    final controller = Get.find<HomeController>();
+
     return Column(
       children: [
-        CarouselSlider(
-         options: CarouselOptions(viewportFraction: 1,
-         onPageChanged: (index, _)=> controller.UpdatePageIndicator(index)),
-         items: banners.map((url) => TRoundedImage(imageUrl: url, isNetworkImage: false)).toList()
+        SizedBox(
+          height: 200,
+          width: double.infinity,
+          child: CarouselSlider(
+              options: CarouselOptions(
+                  viewportFraction: 1.0,
+                  onPageChanged: (index, _) =>
+                      controller.UpdatePageIndicator(index)),
+              items: banners
+                  .map((url) => TRoundedImage(
+                        imageUrl: url,
+                        isNetworkImage: false,
+                        height: 200,
+                        width: double.infinity,
+                      ))
+                  .toList()),
         ),
-        const SizedBox(height: TSizes.spaceBtwItems,),
+        const SizedBox(
+          height: TSizes.spaceBtwItems,
+        ),
         Center(
           child: Obx(
-            ()=> Row(
-              mainAxisSize: MainAxisSize.min,
+            () => Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-               for(int i =0; i<banners.length ; i++)
-                TCircularContainer(
-                 width: 20,
-                 margin: const EdgeInsets.only(right: 10),
-                 height: 4,
-                 backgroundColor:  controller.carousalCurrentIndex.value == i ? const Color.fromARGB(255, 30, 143, 92) : TColors.grey,
-                ),
+                for (int i = 0; i < banners.length; i++)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 5), // Equal padding on left & right
+                    child: TCircularContainer(
+                      width: 8,
+                      height: 8,
+                      radius: 100,
+                      backgroundColor:
+                          controller.carousalCurrentIndex.value == i
+                              ? const Color.fromARGB(255, 40, 180, 124)
+                              : const Color.fromARGB(255, 128, 128, 129),
+                    ),
+                  ),
               ],
             ),
           ),

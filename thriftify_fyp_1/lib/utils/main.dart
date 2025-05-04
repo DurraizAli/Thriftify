@@ -6,6 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:thriftify_fyp_1/app.dart';
 import 'package:thriftify_fyp_1/data/repositories/authentication/authentication_repositories.dart';
 import 'package:thriftify_fyp_1/features/shop/controllers/category_controller.dart';
+import 'package:thriftify_fyp_1/features/shop/controllers/home_controller.dart';
 import 'package:thriftify_fyp_1/firebase_options.dart';
 
 Future<void> main() async {
@@ -19,6 +20,9 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform).then((FirebaseApp value) => Get.put(AuthenticationRepository()));
     
+  
+  Get.put(HomeController());
+
   Get.put(CategoryController());
   
   runApp(const App());
