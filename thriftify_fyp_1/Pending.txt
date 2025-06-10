@@ -1,0 +1,7 @@
+product_detail.dart is pending for firebase data retrieval
+product_card_vertical.dart is also pending for firebase data retrieval
+all_products.dart is also pending for firebase data retrieval
+category_tab.dart is also pending
+
+
+changed home.dart
