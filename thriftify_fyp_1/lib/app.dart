@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:thriftify_fyp_1/bindings/general_bindings.dart';
+import 'package:thriftify_fyp_1/routes/app_routes.dart';
 import 'package:thriftify_fyp_1/utils/constants/colors.dart';
 import 'package:thriftify_fyp_1/utils/theme/theme.dart';
 
@@ -15,6 +16,7 @@ class App extends StatelessWidget {
       initialBinding: GeneralBindings(),
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
+      getPages: AppRoutes.pages,
       home: const Scaffold(backgroundColor: TColors.primary, body: Center(child: CircularProgressIndicator(color: Colors.white,),),),
     );
   }
