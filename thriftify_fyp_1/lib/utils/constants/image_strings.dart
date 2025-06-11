@@ -11,11 +11,11 @@ class TImages {
   static const String onboarding2 = 'assets/images/on_boarding_images/2.png';
   static const String onboarding3 = 'assets/images/on_boarding_images/3.png';
 
-  static const String promoBanner1 = 'assets/images/banners/nike2.png';
-  static const String promoBanner2 = 'assets/images/banners/nike1.png';
-  static const String promoBanner3 = 'assets/images/banners/nike3.png';
+  static const String banner1 = 'assets/images/banners/banner1.png';
+  static const String banner2 = 'assets/images/banners/banner2.png';
+  static const String banner3 = 'assets/images/banners/banner3.png';
 
-  static const String productImage1 = "assets/images/banners/nike2.png";
+  static const String productImage1 = "assets/images/products/nike1.png";
 
   static const String user = "assets/images/user/user.png";
   static const String success_animation= "assets/animations/success.json";

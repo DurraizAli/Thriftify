@@ -48,7 +48,12 @@ class TCategoryTab extends StatelessWidget {
                 ),
                 TGridLayout(
                     itemCount: 4,
-                    itemBuilder: (_, index) => const TProductCardVertical()),
+                    itemBuilder: (_, index) => const TProductCardVertical(
+                          title: 'Jordan 1',
+                          brand: 'Nike',
+                          price: '200',
+                          imageUrl: 'https://imageuri',
+                        )),
                 const SizedBox(
                   height: TSizes.spaceBtwSections,
                 ),

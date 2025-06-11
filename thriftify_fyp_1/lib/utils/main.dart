@@ -7,6 +7,7 @@ import 'package:thriftify_fyp_1/app.dart';
 import 'package:thriftify_fyp_1/data/repositories/authentication/authentication_repositories.dart';
 import 'package:thriftify_fyp_1/features/shop/controllers/category_controller.dart';
 import 'package:thriftify_fyp_1/features/shop/controllers/home_controller.dart';
+import 'package:thriftify_fyp_1/features/shop/controllers/product_controller.dart';
 import 'package:thriftify_fyp_1/firebase_options.dart';
 
 Future<void> main() async {
@@ -24,7 +25,7 @@ Future<void> main() async {
   Get.put(HomeController());
 
   Get.put(CategoryController());
-  
+  Get.put(ProductController()); 
   runApp(const App());
 }
 

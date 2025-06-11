@@ -18,7 +18,7 @@ class SubCategoriesScreen extends StatelessWidget {
           padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: Column(
             children: [
-              const TRoundedImage(width: double.infinity, imageUrl: TImages.promoBanner1, applyImageRadius: true,),
+              const TRoundedImage(width: double.infinity, imageUrl: TImages.productImage1, applyImageRadius: true,),
               const SizedBox(height: TSizes.spaceBtwSections,),
 
 

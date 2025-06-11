@@ -63,7 +63,7 @@ class LoginController extends GetxController{
 
   Future<void> googleSignIn() async {
     try{
-      TFullScreenLoader.openLoadingDialog('Logging you in...', TImages.promoBanner1);
+      TFullScreenLoader.openLoadingDialog('Logging you in...', TImages.onboarding2);
       final isConnected = await NetworkManager.instance.isConnected();
       if(!isConnected) {
         TFullScreenLoader.stopLoading();

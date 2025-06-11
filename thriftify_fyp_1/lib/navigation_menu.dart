@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:thriftify_fyp_1/features/personalization/screens/settings/settings.dart';
+import 'package:thriftify_fyp_1/features/shop/screens/Chatbot/chat_screen.dart';
+import 'package:thriftify_fyp_1/features/shop/screens/Post%20Ad/post_ad_screen.dart';
 import 'package:thriftify_fyp_1/features/shop/screens/home.dart';
 import 'package:thriftify_fyp_1/features/shop/screens/store/store.dart';
 import 'package:thriftify_fyp_1/utils/helpers/helper_functions.dart';
@@ -37,9 +39,14 @@ class NavigationMenu extends StatelessWidget {
               label: 'Store',
             ),
             NavigationDestination(
+              icon: Icon(Icons.add),
+              label: 'Add',
+            ),
+            NavigationDestination(
               icon: Icon(Icons.chat),
               label: 'Chat',
             ),
+            
             NavigationDestination(
               icon: Icon(Icons.person),
               label: 'Profile',
@@ -59,10 +66,10 @@ class NavigationController extends GetxController {
   final screens = [
     const HomeScreen(),
     StoreScreen(),
-    Container(
-      color: Colors.green,
-    ),
+    PostAdScreen(),
+    ChatScreen(),
+     
     const SettingsScreen(),
-    Container(color: Colors.yellow)
+    
   ]; //list of screens to be displayed
 }
