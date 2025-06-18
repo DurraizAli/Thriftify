@@ -204,9 +204,10 @@ class PostAdScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-
+                        const SizedBox(height: TSizes.defaultSpace),
+                        const Text("(i.e) For the last picture, kindly put on your cloth and take a picture and crop the picture to it's boundries.", style: TextStyle(color:  Color.fromARGB(255, 247, 92, 92), fontSize: 10),),
                         const SizedBox(height: TSizes.spaceBtwItems),
-
+                        
                         // Show selected images
                         Obx(() {
                           final List<File> files = [

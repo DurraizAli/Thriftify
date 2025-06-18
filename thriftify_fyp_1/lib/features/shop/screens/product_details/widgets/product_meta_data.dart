@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:thriftify_fyp_1/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:thriftify_fyp_1/common/widgets/images/t_circular_image.dart';
 import 'package:thriftify_fyp_1/common/widgets/texts/product_price_text.dart';
 import 'package:thriftify_fyp_1/common/widgets/texts/product_title_text.dart';
 import 'package:thriftify_fyp_1/common/widgets/texts/t_brand_title_text_with_verified_icon.dart';
+import 'package:thriftify_fyp_1/features/shop/controllers/product_controller.dart';
+import 'package:thriftify_fyp_1/features/shop/models/product_model.dart';
 import 'package:thriftify_fyp_1/utils/constants/colors.dart';
 import 'package:thriftify_fyp_1/utils/constants/enums.dart';
 import 'package:thriftify_fyp_1/utils/constants/image_strings.dart';
@@ -11,7 +14,9 @@ import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
 import 'package:thriftify_fyp_1/utils/helpers/helper_functions.dart';
 
 class TProductMetaData extends StatelessWidget {
-  const TProductMetaData({super.key});
+
+  final ProductModel product;
+  const TProductMetaData(this.product,{super.key} );
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +28,11 @@ class TProductMetaData extends StatelessWidget {
        
         // Text('\$250', style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough),),
         // const SizedBox(width: TSizes.spaceBtwItems,),
-        const TProductPriceText(price: '175', isLarge: true,),
+         TProductPriceText(price: product.price , isLarge: true,),
 
         const SizedBox(height: TSizes.spaceBtwItems/1.5,),
 
-        const TProductTitleText(title: 'Nike Shoes'),
+         TProductTitleText(title: product.name ),
         const SizedBox(height: TSizes.spaceBtwItems/1.5,),
 
         // Row(
@@ -45,7 +50,7 @@ class TProductMetaData extends StatelessWidget {
             width: 32,
             height: 32,
             overlayColor: darkMode ? TColors.white: TColors.black,),
-            const TBrandTitleWithVerifiedIcon(title: 'Nike', brandTextSize: TextSizes.medium,)
+            TBrandTitleWithVerifiedIcon(title: product.brand, brandTextSize: TextSizes.medium,)
           ],
         )
         

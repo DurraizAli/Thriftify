@@ -7,6 +7,7 @@ class ProductController extends GetxController {
   
   final RxList<ProductModel> products = <ProductModel>[].obs;
   final RxBool isLoading = false.obs;
+  final RxnString selectedBrand = RxnString();
 
   @override
   void onInit() {
@@ -17,7 +18,7 @@ class ProductController extends GetxController {
 Future<void> fetchProducts() async {
     try {
       isLoading.value = true;
-      final snapshot = await FirebaseFirestore.instance.collection('ads').get();
+      final snapshot = await FirebaseFirestore.instance.collection('ads').orderBy('createdAt', descending: false).get();
       print('Fetched ${snapshot.docs.length} products');
       final fetchedProducts = snapshot.docs.map((doc) {
         print(doc.data()); // <-- Add this

@@ -12,6 +12,8 @@ import 'package:thriftify_fyp_1/features/shop/screens/home/widgets/home_appbar.d
 import 'package:thriftify_fyp_1/features/shop/screens/home/widgets/home_categories.dart';
 import 'package:thriftify_fyp_1/features/shop/screens/home/widgets/promo_slider.dart';
 import 'package:thriftify_fyp_1/features/shop/screens/product_details/product_detail.dart';
+import 'package:thriftify_fyp_1/features/shop/screens/store/store.dart';
+import 'package:thriftify_fyp_1/navigation_menu.dart';
 import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -20,6 +22,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productController = Get.find<ProductController>();
+    final navController = Get.find<NavigationController>();
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -57,7 +60,10 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: TSizes.spaceBtwSections),
                   TSectionHeading(
                     title: 'Popular Products',
-                    onPressed: () => Get.to(() => const AllProducts()),
+                   onPressed: () {
+                      navController.selectedIndex.value =
+                          1; // 1 is the Store tab
+                    },
                   ),
                   const SizedBox(height: TSizes.spaceBtwItems),
 //---------------------------------------------------------------
@@ -104,7 +110,7 @@ class HomeScreen extends StatelessWidget {
                       return const Text("No products found");
                     }
                     return TGridLayout(
-                      itemCount: productController.products.length,
+                      itemCount: 4,
                       itemBuilder: (_, index) {
                         final product = productController.products[index];
                         return TProductCardVertical(

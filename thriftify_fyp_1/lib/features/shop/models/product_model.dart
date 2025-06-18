@@ -4,6 +4,7 @@ class ProductModel {
   final String id;
   final String name;
   final String price;
+  final String brand;
   final String description;
   final String category;
   final String phone;
@@ -19,6 +20,7 @@ class ProductModel {
     required this.phone,
     required this.imageUrls,
     required this.createdAt,
+    required this.brand,
   });
 
   factory ProductModel.fromSnapshot(DocumentSnapshot doc) {
@@ -35,6 +37,7 @@ class ProductModel {
       createdAt: data['createdAt'] != null
           ? (data['createdAt'] as Timestamp).toDate()
           : null,
+      brand: data['brand'] ?? '',
     );
   }
 }

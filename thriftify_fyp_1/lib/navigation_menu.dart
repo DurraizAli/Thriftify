@@ -7,12 +7,13 @@ import 'package:thriftify_fyp_1/features/shop/screens/home.dart';
 import 'package:thriftify_fyp_1/features/shop/screens/store/store.dart';
 import 'package:thriftify_fyp_1/utils/helpers/helper_functions.dart';
 
+final NavigationController controller = Get.put(NavigationController());
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(NavigationController());
+    final NavigationController controller = Get.put(NavigationController());
     final darkMode = THelperFunctions.isDarkMode(context);
     return Scaffold(
       bottomNavigationBar: Obx(
@@ -36,7 +37,7 @@ class NavigationMenu extends StatelessWidget {
             ),
             NavigationDestination(
               icon: Icon(Icons.store),
-              label: 'Store',
+              label: 'Brands',
             ),
             NavigationDestination(
               icon: Icon(Icons.add),

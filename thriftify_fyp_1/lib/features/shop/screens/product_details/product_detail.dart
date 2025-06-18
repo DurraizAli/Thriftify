@@ -169,56 +169,64 @@ class ProductDetailScreen extends StatelessWidget {
 
                 //--------------------------------------------------------------------------------------------
                 // const TRatingAndShare(),
-                Row(
+               Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const TProductMetaData(),
-                    const SizedBox(
-                      width: 150,
+                    // Product meta data expands and wraps text
+                    Expanded(
+                      child: TProductMetaData(product),
                     ),
-                    SizedBox(
-                      width: 100,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor:
-                                const Color.fromARGB(255, 243, 200, 9),
-                            side: BorderSide.none),
-                        onPressed: () async {
-                          final picked = await ImagePicker()
-                              .pickImage(source: ImageSource.gallery);
-                          if (picked != null) {
-                            // Get the last image (background-removed) from product.imageUrls
-                            final productImgUrl = product.imageUrls.last;
-                            // Download both images as bytes
+                    const SizedBox(width: 16),
+                    // Try-On button hugs the right with padding
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, right: 8.0),
+                      child: SizedBox(
+                        width: 100,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromARGB(255, 243, 200, 9),
+                              side: BorderSide.none),
+                          onPressed: () async {
+                            final picked = await ImagePicker()
+                                .pickImage(source: ImageSource.gallery);
+                            if (picked != null) {
+                              // Get the last image (background-removed) from product.imageUrls
+                              final productImgUrl = product.imageUrls.last;
+                              // Download both images as bytes
 
-                            final userBytes = await picked.readAsBytes();
-                            final productBytes =
-                                (await http.get(Uri.parse(productImgUrl)))
-                                    .bodyBytes;
-                            // Send to Flask server
-                            final request = http.MultipartRequest('POST',
-                                Uri.parse('http://192.168.137.1:5000/try-on'));
-                            request.files.add(http.MultipartFile.fromBytes(
-                                'user', userBytes,
-                                filename: 'user.jpg'));
-                            request.files.add(http.MultipartFile.fromBytes(
-                                'product', productBytes,
-                                filename: 'product.png'));
-                            final response = await request.send();
-                            if (response.statusCode == 200) {
-                              final resultBytes =
-                                  await response.stream.toBytes();
-                              showDialog(
-                                context: context,
-                                builder: (_) => Dialog(
-                                  child: Image.memory(resultBytes),
-                                ),
-                              );
-                            } else {
-                              Get.snackbar("Error", "Try-On failed");
+                              final userBytes = await picked.readAsBytes();
+                              final productBytes =
+                                  (await http.get(Uri.parse(productImgUrl)))
+                                      .bodyBytes;
+                              // Send to Flask server
+                              final request = http.MultipartRequest(
+                                  'POST',
+                                  Uri.parse(
+                                      'http://192.168.137.1:5000/try-on'));
+                              request.files.add(http.MultipartFile.fromBytes(
+                                  'user', userBytes,
+                                  filename: 'user.jpg'));
+                              request.files.add(http.MultipartFile.fromBytes(
+                                  'product', productBytes,
+                                  filename: 'product.png'));
+                              final response = await request.send();
+                              if (response.statusCode == 200) {
+                                final resultBytes =
+                                    await response.stream.toBytes();
+                                showDialog(
+                                  context: context,
+                                  builder: (_) => Dialog(
+                                    child: Image.memory(resultBytes),
+                                  ),
+                                );
+                              } else {
+                                Get.snackbar("Error", "Try-On failed");
+                              }
                             }
-                          }
-                        },
-                        child: const Text("Try-On"),
+                          },
+                          child: const Text("Try-On"),
+                        ),
                       ),
                     ),
                   ],
@@ -234,17 +242,17 @@ class ProductDetailScreen extends StatelessWidget {
                 const SizedBox(
                   height: TSizes.spaceBtwItems,
                 ),
-                const ReadMoreText(
+                  ReadMoreText(
                   //This is the read more text widget that will display the product description
-                  'This is a Product Description for Nike Shoes. There are more things that can be added but i am busy.',
+                  product.description,
                   trimLines: 2,
                   trimMode: TrimMode.Line,
                   trimCollapsedText: 'Show More',
                   trimExpandedText: 'Less',
                   moreStyle:
-                      TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                     const  TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                   lessStyle:
-                      TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                     const  TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                 ),
                 // const Divider(),
                 const SizedBox(

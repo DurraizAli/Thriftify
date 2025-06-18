@@ -32,9 +32,7 @@ class AllProducts extends StatelessWidget {
                   'Name',
                   'Higher Price',
                   'Lower Price',
-                  'Sale',
                   'Newest',
-                  'Popularity'
                 ]
                     .map((option) =>
                         DropdownMenuItem(value: option, child: Text(option)))

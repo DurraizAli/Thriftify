@@ -38,11 +38,7 @@ class TCategoryTab extends StatelessWidget {
                 const SizedBox(
                   height: TSizes.spaceBtwItems,
                 ),
-                TSectionHeading(
-                  title: 'You might like',
-                  showActionButton: true,
-                  onPressed: () {},
-                ),
+               const  Text("You might also like", style: TextStyle(fontSize: TSizes.fontSizemd, fontWeight: FontWeight.bold),),
                 const SizedBox(
                   height: TSizes.spaceBtwItems,
                 ),
@@ -52,7 +48,7 @@ class TCategoryTab extends StatelessWidget {
                           title: 'Jordan 1',
                           brand: 'Nike',
                           price: '200',
-                          imageUrl: 'https://imageuri',
+                          imageUrl: 'https://speedsports.pk/cdn/shop/files/AURORA_FJ9509-401_PHSLH000-2000.jpg?v=1728973702',
                         )),
                 const SizedBox(
                   height: TSizes.spaceBtwSections,
