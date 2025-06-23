@@ -19,13 +19,23 @@ class StoreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 255, 255, 245),
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 255, 255, 245),
         leading: Navigator.canPop(context)
             ? IconButton(
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () => Get.back(),
               )
             : null,
+        title: const Text(
+          "Thriftify Store 🛍️",
+          style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 0, 0, 0),
+              fontFamily: 'Poppins'),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(TSizes.defaultSpace),
@@ -55,7 +65,7 @@ class StoreScreen extends StatelessWidget {
                   'Brands',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 24,
+                    fontSize: 22,
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -69,13 +79,11 @@ class StoreScreen extends StatelessWidget {
                     return TextButton(
                       style: TextButton.styleFrom(
                         backgroundColor: isActive
-                            ? Theme.of(context)
-                                .colorScheme
-                                .primary
-                                .withOpacity(0.15)
+                            ? const Color(0xFF26A69A)
+                                .withOpacity(0.18) // comfy green background
                             : Colors.grey.shade200,
                         foregroundColor: isActive
-                            ? Theme.of(context).colorScheme.primary
+                            ? const Color(0xFF26A69A) // comfy green text
                             : Colors.black,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 12, vertical: 4),
@@ -103,7 +111,7 @@ class StoreScreen extends StatelessWidget {
                   'Categories',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 24,
+                    fontSize: 22,
                   ),
                 ),
                 const SizedBox(height: 12),
@@ -117,13 +125,11 @@ class StoreScreen extends StatelessWidget {
                     return TextButton(
                       style: TextButton.styleFrom(
                         backgroundColor: isActive
-                            ? Theme.of(context)
-                                .colorScheme
-                                .secondary
-                                .withOpacity(0.15)
+                            ? const Color(0xFF26A69A)
+                                .withOpacity(0.18) // comfy green background
                             : Colors.grey.shade200,
                         foregroundColor: isActive
-                            ? Theme.of(context).colorScheme.secondary
+                            ? const Color(0xFF26A69A) // comfy green text
                             : Colors.black,
                         padding: const EdgeInsets.symmetric(
                             horizontal: 12, vertical: 4),
@@ -152,7 +158,7 @@ class StoreScreen extends StatelessWidget {
                         const Text(
                           'Sort by: ',
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
+                              fontWeight: FontWeight.w600, fontSize: 16),
                         ),
                         DropdownButton<String>(
                           value: selectedSort.value,
@@ -179,7 +185,7 @@ class StoreScreen extends StatelessWidget {
                   'Products',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 24,
+                    fontSize: 22,
                   ),
                 ),
                 const SizedBox(height: 16),

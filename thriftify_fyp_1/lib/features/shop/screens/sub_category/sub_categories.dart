@@ -1,45 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:thriftify_fyp_1/common/widgets/appbar/appbar.dart';
-import 'package:thriftify_fyp_1/common/widgets/images/t_rounded_image.dart';
 import 'package:thriftify_fyp_1/common/widgets/products/product_cards/product_card_horizontal.dart';
-import 'package:thriftify_fyp_1/common/widgets/texts/section_heading.dart';
-import 'package:thriftify_fyp_1/utils/constants/image_strings.dart';
 import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
+import '../../controllers/product_controller.dart';
 
 class SubCategoriesScreen extends StatelessWidget {
-  const SubCategoriesScreen({super.key});
+  final String categoryName;
+  const SubCategoriesScreen({super.key, required this.categoryName});
 
   @override
   Widget build(BuildContext context) {
+    final productController = Get.find<ProductController>();
+
     return Scaffold(
-      appBar: const TAppBar(title: Text('Sports'), showBackArrow: true,),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(TSizes.defaultSpace),
-          child: Column(
-            children: [
-              const TRoundedImage(width: double.infinity, imageUrl: TImages.productImage1, applyImageRadius: true,),
-              const SizedBox(height: TSizes.spaceBtwSections,),
+      appBar: TAppBar(title: Text(categoryName), showBackArrow: true),
+      body: Padding(
+        padding: const EdgeInsets.all(TSizes.defaultSpace),
+        child: Obx(() {
+          if (productController.isLoading.value) {
+            return const Center(child: CircularProgressIndicator());
+          }
 
+          // Filter products by category (case-insensitive, trimmed)
+          final filteredProducts = productController.products
+              .where((product) =>
+                  (product.category ?? '').trim().toLowerCase() ==
+                  categoryName.trim().toLowerCase())
+              .toList();
 
-              Column(
-                children: [
-                  TSectionHeading(title: 'Sports Shirts', onPressed: (){},),
-                  const SizedBox(height:  TSizes.spaceBtwItems / 2),
+          if (filteredProducts.isEmpty) {
+            return const Center(
+                child: Text("No products found for this category"));
+          }
 
-                  SizedBox(
-                    height: 120,
-                    child: ListView.separated(
-                      itemCount: 4,
-                      scrollDirection: Axis.horizontal,
-                      separatorBuilder: (context, index) => const SizedBox(width: TSizes.spaceBtwItems),
-                      itemBuilder: (context, index) => const TProductCardHorizontal(),
-                    ),
-                  )
-                ],
-              )
-            ],
-          ),),
+          return ListView.separated(
+            itemCount: filteredProducts.length,
+            separatorBuilder: (_, __) =>
+                const SizedBox(height: TSizes.spaceBtwItems),
+            itemBuilder: (context, index) {
+              final product = filteredProducts[index];
+              return TProductCardHorizontal(product: product);
+            },
+          );
+        }),
       ),
     );
   }

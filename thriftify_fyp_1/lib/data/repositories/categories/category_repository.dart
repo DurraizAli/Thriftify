@@ -5,21 +5,24 @@ import 'package:thriftify_fyp_1/features/shop/models/category_model.dart';
 class CategoryRepository extends GetxController {
   static CategoryRepository get instance => Get.find();
   //variable to store the instance of firestore
-  final _db = FirebaseFirestore.instance;
+  
 
   /// Get all categories
-  Future<List<CategoryModel>> getAllCategories() async {
+Future<List<String>> getAllCategoriesFromAds() async {
     try {
-      final snapshot = await _db.collection('Categories').get();
-      final list = snapshot.docs
-          .map((document) => CategoryModel.fromSnapshot(document))
+      final snapshot = await FirebaseFirestore.instance.collection('ads').get();
+      // Extract category from each product
+      final categories = snapshot.docs
+          .map((doc) => doc['category'] as String?)
+          .where((cat) => cat != null && cat.isNotEmpty)
+          .toSet()
           .toList();
-      return list;
+      return categories.cast<String>();
     } catch (e) {
       throw 'Something went wrong while fetching categories. $e';
     }
   }
-
+}
   // Future<void> uploadDummyData(List<CategoryModel> categories) async {
   //   try {
   //     // Upload all the Categories along with their Images
@@ -47,4 +50,4 @@ class CategoryRepository extends GetxController {
   //     throw 'Something went wrong. Please try again';
   //   }
   // }
-}
+

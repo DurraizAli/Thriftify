@@ -8,6 +8,7 @@ import 'package:thriftify_fyp_1/features/shop/screens/store/store.dart';
 import 'package:thriftify_fyp_1/utils/helpers/helper_functions.dart';
 
 final NavigationController controller = Get.put(NavigationController());
+
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key});
 
@@ -15,44 +16,66 @@ class NavigationMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     final NavigationController controller = Get.put(NavigationController());
     final darkMode = THelperFunctions.isDarkMode(context);
+    const comfyGreen = Color(0xFF26A69A);
+
     return Scaffold(
       bottomNavigationBar: Obx(
-        //this is observer widget, it will rebuild when the selectedIndex changes
-        () => NavigationBar(
-          height: 80,
-          elevation: 0,
-          selectedIndex: controller.selectedIndex.value,
-          onDestinationSelected: (index) =>
-              controller.selectedIndex.value = index,
-          backgroundColor: darkMode ? Colors.black : Colors.white,
-          indicatorColor: darkMode ? Colors.white.withOpacity(0.1) : Colors.black.withOpacity(0.1),
+        () => NavigationBarTheme(
+          data: NavigationBarThemeData(
+            indicatorColor: Colors.transparent, // No rectangle border
+            labelTextStyle: MaterialStateProperty.resolveWith<TextStyle>(
+              (states) => TextStyle(
+                color: states.contains(MaterialState.selected)
+                    ? const Color.fromARGB(255, 0, 0, 0)
+                    : Colors.grey,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            iconTheme: MaterialStateProperty.resolveWith<IconThemeData>(
+              (states) => IconThemeData(
+                color: states.contains(MaterialState.selected)
+                    ? comfyGreen
+                    : const Color.fromARGB(255, 0, 0, 0),
+              ),
+            ),
+          ),
+          child: NavigationBar(
+            height: 80,
+            elevation: 0,
+            selectedIndex: controller.selectedIndex.value,
+            onDestinationSelected: (index) =>
+                controller.selectedIndex.value = index,
+            backgroundColor: darkMode ? Colors.black : Colors.white,
+            // indicatorColor is now handled by NavigationBarTheme
 
-
-          destinations: const [
-            //these are the destinations that will be displayed in the bottom navigation bar
-            //each destination has an icon and a label
-            NavigationDestination(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.store),
-              label: 'Brands',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.add),
-              label: 'Add',
-            ),
-            NavigationDestination(
-              icon: Icon(Icons.chat),
-              label: 'Chat',
-            ),
-            
-            NavigationDestination(
-              icon: Icon(Icons.person),
-              label: 'Profile',
-            ),
-          ],
+            destinations: const [
+              NavigationDestination(
+                icon: Icon(Icons.home_outlined),
+                selectedIcon: Icon(Icons.home), // filled when active
+                label: 'Home',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.store_outlined),
+                selectedIcon: Icon(Icons.store), // filled when active
+                label: 'Brands',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.add_outlined),
+                selectedIcon: Icon(Icons.add), // filled when active
+                label: 'Add',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.chat_outlined),
+                selectedIcon: Icon(Icons.chat), // filled when active
+                label: 'Chat',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.person_outline),
+                selectedIcon: Icon(Icons.person), // filled when active
+                label: 'Profile',
+              ),
+            ],
+          ),
         ),
       ),
       body: Obx(() => controller.screens[controller.selectedIndex
@@ -69,8 +92,6 @@ class NavigationController extends GetxController {
     StoreScreen(),
     PostAdScreen(),
     ChatScreen(),
-     
     const SettingsScreen(),
-    
   ]; //list of screens to be displayed
 }

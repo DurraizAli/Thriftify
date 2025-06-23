@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:thriftify_fyp_1/common/widgets/appbar/appbar.dart';
-import 'package:thriftify_fyp_1/common/widgets/chatbot/AI_bot.dart';
 import 'package:thriftify_fyp_1/common/widgets/shimmers/shimmer.dart';
 import 'package:thriftify_fyp_1/features/personalization/controllers/user_controller.dart';
 import 'package:thriftify_fyp_1/utils/constants/colors.dart';
@@ -36,18 +35,9 @@ class THomeAppBar extends StatelessWidget {
                       .headlineSmall!
                       .apply(color: TColors.white));
             }
-          }
-          ),
+          }),
         ],
       ),
-      actions: [
-        TAiMessageIcon(
-          onPressed: () {},
-          iconColor: TColors.white,
-        ),
-      ],
     );
   }
 }
-
-

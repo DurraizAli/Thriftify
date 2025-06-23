@@ -14,9 +14,8 @@ import 'package:thriftify_fyp_1/utils/constants/sizes.dart';
 import 'package:thriftify_fyp_1/utils/helpers/helper_functions.dart';
 
 class TProductMetaData extends StatelessWidget {
-
   final ProductModel product;
-  const TProductMetaData(this.product,{super.key} );
+  const TProductMetaData(this.product, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,16 +23,25 @@ class TProductMetaData extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-       const SizedBox(width: TSizes.spaceBtwItems,),
-       
+        const SizedBox(
+          width: TSizes.spaceBtwItems,
+        ),
+
         // Text('\$250', style: Theme.of(context).textTheme.titleSmall!.apply(decoration: TextDecoration.lineThrough),),
         // const SizedBox(width: TSizes.spaceBtwItems,),
-         TProductPriceText(price: product.price , isLarge: true,),
+        TProductPriceText(
+          price: product.price,
+          isLarge: true,
+        ),
 
-        const SizedBox(height: TSizes.spaceBtwItems/1.5,),
+        const SizedBox(
+          height: TSizes.spaceBtwItems / 1.5,
+        ),
 
-         TProductTitleText(title: product.name ),
-        const SizedBox(height: TSizes.spaceBtwItems/1.5,),
+        TProductTitleText(title: product.name),
+        const SizedBox(
+          height: TSizes.spaceBtwItems / 1.5,
+        ),
 
         // Row(
         //   children: [
@@ -42,18 +50,22 @@ class TProductMetaData extends StatelessWidget {
         //     Text('In Stock', style: Theme.of(context).textTheme.titleMedium,),
         //   ],
         // ),
-        const SizedBox(height: TSizes.spaceBtwItems/1.5,),
+        const SizedBox(
+          height: TSizes.spaceBtwItems / 1.5,
+        ),
 
         Row(
           children: [
-            TCircularImage(image: TImages.google,
-            width: 32,
-            height: 32,
-            overlayColor: darkMode ? TColors.white: TColors.black,),
-            TBrandTitleWithVerifiedIcon(title: product.brand, brandTextSize: TextSizes.medium,)
+            // TCircularImage(image: TImages.google,
+            // width: 32,
+            // height: 32,
+            // overlayColor: darkMode ? TColors.white: TColors.black,),
+            TBrandTitleWithVerifiedIcon(
+              title: product.brand,
+              brandTextSize: TextSizes.medium,
+            )
           ],
         )
-        
       ],
     );
   }

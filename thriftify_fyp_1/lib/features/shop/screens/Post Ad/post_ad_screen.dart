@@ -27,7 +27,7 @@ class PostAdScreen extends StatelessWidget {
     'Boots'
         'Runners',
     'Other'
-  ];
+  ]..sort();
 
   final List<String> brands = [
     'Nike',
@@ -75,7 +75,7 @@ class PostAdScreen extends StatelessWidget {
     'Paul Smith',
     'Burberry',
     'Other'
-  ];
+  ]..sort();
 
   PostAdScreen({super.key});
 
@@ -83,9 +83,12 @@ class PostAdScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
+      backgroundColor:
+          const Color.fromARGB(255, 255, 255, 245), // Make scaffold transparent
       body: Obx(() => controller.isLoading.value
           ? const Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -135,7 +138,8 @@ class PostAdScreen extends StatelessWidget {
                             isNumber: true),
                         const SizedBox(height: TSizes.spaceBtwItems),
                         _buildTextField("Description", controller.description,
-                            maxLines: 3),
+                            maxLines: null,
+                            textInputAction: TextInputAction.newline),
                         const SizedBox(height: TSizes.spaceBtwItems),
 
                         //the dropdown for category
@@ -146,6 +150,8 @@ class PostAdScreen extends StatelessWidget {
                                   : controller.category.value,
                               decoration: InputDecoration(
                                 labelText: 'Category',
+                                labelStyle:
+                                    const TextStyle(color: Color(0xFF888888)),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(12)),
                               ),
@@ -161,7 +167,7 @@ class PostAdScreen extends StatelessWidget {
                                 }
                               },
                             )),
-//drop down for brands
+                        //drop down for brands
                         const SizedBox(height: TSizes.spaceBtwItems),
                         Obx(() => DropdownButtonFormField<String>(
                               value: controller.brand.value.isEmpty
@@ -169,6 +175,8 @@ class PostAdScreen extends StatelessWidget {
                                   : controller.brand.value,
                               decoration: InputDecoration(
                                 labelText: 'Brand',
+                                labelStyle:
+                                    const TextStyle(color: Color(0xFF888888)),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(12)),
                               ),
@@ -205,9 +213,14 @@ class PostAdScreen extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: TSizes.defaultSpace),
-                        const Text("(i.e) For the last picture, kindly put on your cloth and take a picture and crop the picture to it's boundries.", style: TextStyle(color:  Color.fromARGB(255, 247, 92, 92), fontSize: 10),),
+                        const Text(
+                          "(i.e) For the last picture, kindly put on your cloth and take a picture and crop the picture to it's boundries.",
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 247, 92, 92),
+                              fontSize: 10),
+                        ),
                         const SizedBox(height: TSizes.spaceBtwItems),
-                        
+
                         // Show selected images
                         Obx(() {
                           final List<File> files = [
@@ -273,17 +286,26 @@ class PostAdScreen extends StatelessWidget {
   }
 
   Widget _buildTextField(String label, RxString target,
-      {bool isNumber = false, bool isPhone = false, int maxLines = 1}) {
+      {bool isNumber = false,
+      bool isPhone = false,
+      int? maxLines,
+      TextInputAction? textInputAction}) {
     return TextField(
       onChanged: (val) => target.value = val,
       keyboardType: isNumber
           ? TextInputType.number
           : isPhone
               ? TextInputType.phone
-              : TextInputType.text,
+              : (maxLines == null || maxLines != 1)
+                  ? TextInputType.multiline
+                  : TextInputType.text,
       maxLines: maxLines,
+      textInputAction: textInputAction,
       decoration: InputDecoration(
         labelText: label,
+        labelStyle: const TextStyle(color: Color(0xFF888888)),
+        hintText: label,
+        hintStyle: const TextStyle(color: Color(0xFFB0B0B0)),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
       ),
     );

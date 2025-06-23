@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:thriftify_fyp_1/bindings/general_bindings.dart';
+import 'package:thriftify_fyp_1/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:thriftify_fyp_1/routes/app_routes.dart';
 import 'package:thriftify_fyp_1/utils/constants/colors.dart';
 import 'package:thriftify_fyp_1/utils/theme/theme.dart';
@@ -17,7 +18,9 @@ class App extends StatelessWidget {
       theme: TAppTheme.lightTheme,
       darkTheme: TAppTheme.darkTheme,
       getPages: AppRoutes.pages,
-      home: const Scaffold(backgroundColor: TColors.primary, body: Center(child: CircularProgressIndicator(color: Colors.white,),),),
+      home: const OnBoardingScreen( // Changed to OnBoardingScreen
+        // home: const HomeScreen(), // Uncomment this line to use HomeScreen instead
+      ),
     );
   }
 }

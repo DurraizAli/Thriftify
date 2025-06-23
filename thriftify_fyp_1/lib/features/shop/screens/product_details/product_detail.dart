@@ -15,7 +15,10 @@ import 'package:http/http.dart' as http;
 
 class ProductDetailScreen extends StatelessWidget {
   final ProductModel product;
-  const ProductDetailScreen({super.key, required this.product});
+  // Add this controller for dropdown value
+  final RxString selectedType = 'top'.obs;
+  final List<String> types = ['top', 'bottom', 'full'];
+  ProductDetailScreen({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -150,6 +153,9 @@ class ProductDetailScreen extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(
+              height: 8.0,
+            ),
             //---------------------------------------------------------------------------------------
             Padding(
               padding: const EdgeInsets.only(
@@ -157,6 +163,26 @@ class ProductDetailScreen extends StatelessWidget {
                   left: TSizes.defaultSpace,
                   bottom: TSizes.defaultSpace),
               child: Column(children: [
+                //---------------------------------------------------------------------------------------------
+                Row(
+                  children: [
+                    const Text("Select clothing type: "),
+                    const SizedBox(width: 12),
+                    Obx(() => DropdownButton<String>(
+                          value: selectedType.value,
+                          items: types
+                              .map((type) => DropdownMenuItem(
+                                    value: type,
+                                    child: Text(type[0].toUpperCase() +
+                                        type.substring(1)),
+                                  ))
+                              .toList(),
+                          onChanged: (value) {
+                            if (value != null) selectedType.value = value;
+                          },
+                        )),
+                  ],
+                ),
                 //---------------------------------------------------------------------------------------------
                 //added this line to display the product name and price from firebase
 
@@ -169,7 +195,7 @@ class ProductDetailScreen extends StatelessWidget {
 
                 //--------------------------------------------------------------------------------------------
                 // const TRatingAndShare(),
-               Row(
+                Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Product meta data expands and wraps text
@@ -200,16 +226,29 @@ class ProductDetailScreen extends StatelessWidget {
                                   (await http.get(Uri.parse(productImgUrl)))
                                       .bodyBytes;
                               // Send to Flask server
+                              // final request = http.MultipartRequest(
+                              //     'POST',
+                              //     Uri.parse(
+                              //         'http://192.168.137.1:5000/try-on'));
+                              // request.files.add(http.MultipartFile.fromBytes(
+                              //     'user', userBytes,
+                              //     filename: 'user.jpg'));
+                              // request.files.add(http.MultipartFile.fromBytes(
+                              //     'product', productBytes,
+                              //     filename: 'product.png'));
                               final request = http.MultipartRequest(
-                                  'POST',
-                                  Uri.parse(
-                                      'http://192.168.137.1:5000/try-on'));
+                                'POST',
+                                Uri.parse(
+                                    'http://192.168.10.9:5000/try-on'), // <-- Update this to your Flask server URL
+                              );
                               request.files.add(http.MultipartFile.fromBytes(
                                   'user', userBytes,
                                   filename: 'user.jpg'));
                               request.files.add(http.MultipartFile.fromBytes(
                                   'product', productBytes,
                                   filename: 'product.png'));
+                              request.fields['type'] = selectedType
+                                  .value; // <-- Add this (e.g., "top", "bottom", "full")
                               final response = await request.send();
                               if (response.statusCode == 200) {
                                 final resultBytes =
@@ -242,17 +281,17 @@ class ProductDetailScreen extends StatelessWidget {
                 const SizedBox(
                   height: TSizes.spaceBtwItems,
                 ),
-                  ReadMoreText(
+                ReadMoreText(
                   //This is the read more text widget that will display the product description
                   product.description,
                   trimLines: 2,
                   trimMode: TrimMode.Line,
                   trimCollapsedText: 'Show More',
                   trimExpandedText: 'Less',
-                  moreStyle:
-                     const  TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                  lessStyle:
-                     const  TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                  moreStyle: const TextStyle(
+                      fontSize: 14, fontWeight: FontWeight.w800),
+                  lessStyle: const TextStyle(
+                      fontSize: 14, fontWeight: FontWeight.w800),
                 ),
                 // const Divider(),
                 const SizedBox(

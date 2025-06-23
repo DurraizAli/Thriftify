@@ -39,8 +39,8 @@ class AuthenticationRepository extends GetxController {
     } else {
       deviceStorage.writeIfNull('IsFirstTime', true);
       deviceStorage.read('isFirstTime') != true
-          ? Get.offAll(() => const LoginScreen())
-          : Get.offAll(const OnBoardingScreen());
+          ? Get.offAll(() => const OnBoardingScreen())
+          : Get.offAll(const LoginScreen());
     }
   }
 
@@ -128,21 +128,19 @@ class AuthenticationRepository extends GetxController {
     try {
       AuthCredential credential =
           EmailAuthProvider.credential(email: emails, password: passwords);
-          await _auth.currentUser!.reauthenticateWithCredential(credential);
-
+      await _auth.currentUser!.reauthenticateWithCredential(credential);
     } catch (e) {
-        
-        throw Exception("Something went wrong during re-authentication.$e");
+      throw Exception("Something went wrong during re-authentication.$e");
     }
   }
 
-  Future<void> deleteAccount() async{
-    try{
-        await UserRepository.instance.removeUserRecord(_auth.currentUser!.uid);
-        await _auth.currentUser?.delete();
-    }catch(e){
-        debugPrint("[AuthRepository] Account deletion error: $e");
-        throw Exception("Something went wrong during account deletion.");
+  Future<void> deleteAccount() async {
+    try {
+      await UserRepository.instance.removeUserRecord(_auth.currentUser!.uid);
+      await _auth.currentUser?.delete();
+    } catch (e) {
+      debugPrint("[AuthRepository] Account deletion error: $e");
+      throw Exception("Something went wrong during account deletion.");
     }
   }
 }

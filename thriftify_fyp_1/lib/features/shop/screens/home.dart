@@ -24,10 +24,11 @@ class HomeScreen extends StatelessWidget {
     final productController = Get.find<ProductController>();
     final navController = Get.find<NavigationController>();
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 255, 255, 245),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const TPrimaryHeaderContainer(
+            TPrimaryHeaderContainer(
               child: Column(
                 children: [
                   THomeAppBar(),
@@ -60,7 +61,7 @@ class HomeScreen extends StatelessWidget {
                   const SizedBox(height: TSizes.spaceBtwSections),
                   TSectionHeading(
                     title: 'Popular Products',
-                   onPressed: () {
+                    onPressed: () {
                       navController.selectedIndex.value =
                           1; // 1 is the Store tab
                     },
@@ -101,7 +102,7 @@ class HomeScreen extends StatelessWidget {
                   // ),
 
                   //-----------------------------------------------------------------------------------------
-                  
+
                   Obx(() {
                     if (productController.isLoading.value) {
                       return const CircularProgressIndicator();
