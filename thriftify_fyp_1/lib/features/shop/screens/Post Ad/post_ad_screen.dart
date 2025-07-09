@@ -301,6 +301,7 @@ class PostAdScreen extends StatelessWidget {
                   : TextInputType.text,
       maxLines: maxLines,
       textInputAction: textInputAction,
+      textAlign: TextAlign.start,
       decoration: InputDecoration(
         labelText: label,
         labelStyle: const TextStyle(color: Color(0xFF888888)),
