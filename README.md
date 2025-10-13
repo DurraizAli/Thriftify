@@ -13,7 +13,7 @@ Users can:
 
 👕 Post second-hand clothes for sale  
 🛒 Browse and filter listings by category  
-💬 Chat or contact sellers directly  
+💬 Contact sellers directly  
 🤖 Try on outfits virtually using AI  
 🌍 Support sustainable and circular fashion  
 
@@ -29,7 +29,7 @@ This project demonstrates real-time database handling, state management, and int
 | 🧩 **Product Listings** | Add, edit, and delete clothing ads with images and details |
 | 📸 **Image Uploads** | Secure uploads and compression through Firebase Storage |
 | 🔍 **Smart Search** | Find products by category, name, or location |
-| 💬 **In-App Contact** | Message sellers directly or open WhatsApp chat |
+| 💬 **Integrated Contact** | Message sellers via open WhatsApp chat |
 | 🤖 **AI Try-On (FYP Feature)** | Integrates OpenCV + MediaPipe for virtual outfit fitting |
 | 🎨 **Modern UI** | Minimal and responsive interface using Material design |
 | ⚡ **Realtime Updates** | Firestore/RTDB ensures dynamic, auto-refreshing data |
