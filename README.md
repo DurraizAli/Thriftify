@@ -51,9 +51,4 @@ This project demonstrates real-time database handling, state management, and int
 
 ---
 
-## ⚙️ Setup & Installation
 
-### 1️⃣ Clone the Repository
-```bash
-git clone https://github.com/XVARVE/Thriftify.git
-cd Thriftify
